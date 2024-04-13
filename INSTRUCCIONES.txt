@@ -1,0 +1,21 @@
+                                                ATENCIÓN EQUIPO
+Debemos terminar lo más que se pueda del proyecto en este periodo vacacional. 
+De preferencia y como mínimo, un 80% del mismo. La gran mayoría debe estar antes del 29 de abril.
+Como se los dije en persona, quien no acate con este punto importante e incumpla con su parte,
+no se le dirá nada, pero será retirado del proyecto. Esto es un trabajo en equipo, a todos nos corresponde
+hacer algo.
+
+Una vez aclarado esto, ahora quiero darles un par de recomendaciones:
+    1.- Al usar los estilos css, no utilicen propiedades globales, es decir:
+        body, h1, header, *, etc. En su defecto, usen clases como: .tabla, .mimenu, .colorBoton, etc.
+        Esto porque en index.css ya se están usando los estilos generales y no queremos empalmar propiedades.
+    2.- A algunos les van a tocar crear jsons, como por ejemplo: Lista de deseos, carrito, perfil, etc. 
+        Póngalos en la carpeta: jsons. Cualquier duda pueden ver como es la estructura con el de productos.
+        También cualquier duda de como mandar a llamar el json lo pueden consultar en la carpeta de productos.
+    3.- Eviten usar bootstrap, npm u otras herramientas, puede resultar más fácil y rápido, pero a la mera hora
+        que les pueda preguntar puede resultar complicado saber como modificar.
+    4.- En el caso del carrito no es necesario que esté completado, pero se debe de mostrar un avance o
+        un entendimiento mayor como para resolverlo en lo que queda del semestre.
+
+En general eso es todo lo que deben de saber ahora, de todos modos cualquier cosa que tengan duda no teman y 
+pregunten por el grupo, todos nos apoyamos. Sin más que decir, les deseo suerte y que disfruten sus vacaciones.
