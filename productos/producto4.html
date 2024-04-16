@@ -90,7 +90,7 @@
             const detalleProductoRDiv = document.getElementById('detalle-productoR');
             const nameDiv = document.getElementById('name');
 
-            fetch('http://localhost/landing_crystal_eyes/productos.json')
+            fetch('http://localhost/crystaleyes/jsons/productos.json')
                 .then(response => response.json())
                 .then(data => {
                     const productoId1 = data.find(producto => producto.id === 4);
