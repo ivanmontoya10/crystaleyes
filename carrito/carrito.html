@@ -30,7 +30,93 @@
 </header>
 
 <body>
- <!--Aqui va contenido-->Carrito
+    <h1 class="carrito-de-compras">Carrito de compras</h1>
+
+    <div id="carrito-container"></div>
+    
+<script>
+    let carrito = [];
+        
+        function cargarProductosDesdeLocalStorage() {
+            const storedCarrito = localStorage.getItem('carrito');
+
+    if (storedCarrito) {
+        
+        carrito = JSON.parse(storedCarrito);
+        mostrarCarrito();
+    }
+}
+    function cargarProductosDesdeJSON() {
+    fetch('http://localhost/crystaleyes/jsons/carrito.json')
+        .then(response => response.json())
+        .then(data => {
+            
+            carrito = [...carrito, ...data];
+            mostrarCarrito();
+        })
+        .catch(error => console.error('Error al cargar productos:', error));
+    }
+    
+
+ 
+
+    function mostrarCarrito() {
+    const container = document.getElementById('carrito-container');
+    if (!container) {
+        console.error("El contenedor de carrito no existe.");
+        return;
+    }
+    container.innerHTML = '';
+
+    const headerRow = document.createElement('tr');
+    headerRow.innerHTML = `
+        <th></th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th></th>
+    `;
+    container.appendChild(headerRow);
+
+    carrito.forEach(producto => {
+        const dataRow = document.createElement('tr');
+        dataRow.innerHTML = `
+            <td><img src="${producto.img1}" alt="${producto.img1}" style="max-width: 100px;"></td>
+            <td>${producto.nombre}</td>
+            <td>$${producto.precio}</td>
+            <td><input type="number" min="1" max="5" value="${producto.cantidad}" onchange="actualizarCantidad(${producto.id}, this.value)"></td>
+            <td>
+                <button class="btn btn-danger btn-sm eliminar-btn" onclick="eliminarDeCarrito(${producto.id})">Eliminar</button>
+            </td>
+        `;
+        container.appendChild(dataRow);
+    });
+
+    // Mostrar el total
+    // const totalRow = document.createElement('tr');
+    // totalRow.innerHTML = `
+    //     <td colspan="4">Total a pagar: $${calcularTotal()}</td>
+    // `;
+    // container.appendChild(totalRow);
+}
+
+
+    function eliminarDeCarrito(id) {
+    carrito = carrito.filter(producto => producto.id !== id);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarCarrito();
+
+    if (carrito.length === 0) {
+        const container = document.getElementById('carrito-container');
+        container.innerHTML = '<p>El carrito está vacío.</p>';
+    }
+}
+
+cargarProductosDesdeLocalStorage();
+cargarProductosDesdeJSON();
+
+</script>
+
 </body>
 
 <footer>
