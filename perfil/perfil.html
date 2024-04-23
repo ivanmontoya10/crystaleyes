@@ -18,19 +18,45 @@
         <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
         <ul class="nav-list">
             <li><a href="../index.html">Inicio</a></li>
-            <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
-            <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
-            <li><a href="/crystaleyes/perfil/perfil.html">Perfil</a></li>
-            <li><a href="/crystaleyes/listadeseos/listadeseos.html">Lista de deseos</a></li>
-            <li><a href="/crystaleyes/carrito/carrito.html">Carrito</a></li>
-            <li><a href="/crystaleyes/loginregister/login.html">Inicia sesión</a></li>
-            <li><a href="/crystaleyes/loginregister/register.html">Registrate</a></li>
+            <li><a href="../productos/todos.html">Todos los productos</a></li>
+            <li><a href="../contacto/contacto.html">Contacto</a></li>
+            <li><a href="../perfil/perfil.html">Perfil</a></li>
+            <li><a href="../listadeseos/listadeseos.html">Lista de deseos</a></li>
+            <li><a href="../carrito/carrito.html">Carrito</a></li>
+            <li><a href="../loginregister/login.html">Inicia sesión</a></li>
+            <li><a href="../loginregister/register.html">Registrate</a></li>
         </ul>
     </nav>
 </header>
 
 <body>
  <!--Aqui va contenido-->Perfil
+
+ <div class="account-management">
+    <script src="perfil.js"></script>
+    <h2>Administrar Cuenta</h2>
+    <form id="updateUsernameForm">
+        <label for="username" class="label-text">Nombre de Usuario:</label>
+        <input type="text" id="username" name="username" class="input-field">
+        <button type="button" onclick="updateUsername()" class="update-button">Actualizar Nombre de Usuario</button>
+    </form>
+    <form id="updateEmailForm">
+        <label for="email" class="label-text">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" class="input-field">
+        <button type="button" onclick="updateEmail()" class="update-button">Actualizar Correo Electrónico</button>
+    </form>
+    <form id="updatePasswordForm">
+        <label for="password" class="label-text">Nueva Contraseña:</label>
+        <input type="password" id="password" name="password" class="input-field">
+        <button type="button" onclick="updatePassword()" class="update-button">Cambiar Contraseña</button>
+    </form>
+    <form id="updateAddressForm">
+        <label for="address" class="label-text">Dirección de Envío:</label>
+        <input type="text" id="address" name="address" class="input-field wide-input">
+        <button type="button" onclick="updateAddress()" class="update-button">Actualizar Dirección</button>
+    </form>
+</div>
+
 </body>
 
 <footer>
