@@ -1,0 +1,56 @@
+#carrito-container{
+  background-color: #f9f9f9;
+  margin: 20px;
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  padding: 20px;  
+}
+
+#nom-column{
+  text-align: right;
+}
+
+#carrito-container table {
+  width: 100%; 
+  border-collapse: collapse;
+}
+
+#carrito-container th {
+  border: 1px solid white ; 
+  padding: 8px; 
+  text-align: left; 
+}
+
+#carrito-container td {
+  border: 1px solid #ddd; 
+  padding: 8px; 
+  text-align: left; 
+}
+
+#carrito-container td:first-child,
+#carrito-container th:first-child {
+  width: 100px; 
+}
+
+#carrito-container {
+  width: 50%; 
+  margin-right: 30px;
+  margin-left: 320px; 
+}
+
+.carrito-de-compras{
+  font-family: Arial, sans-serif;
+  text-align: Center; 
+}
+
+.btn {
+  padding: 8px 16px; 
+  border: none; 
+  border-radius: 4px;
+  background-color: #830c16;
+  color: #fff; 
+}
+
+.btn:hover {
+  background-color: #830c16; 
+}
