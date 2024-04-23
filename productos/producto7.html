@@ -110,7 +110,7 @@
                                 <h2>${productoId1.nombre}</h2>
                                 <p class="precio">$${productoId1.precio}</p>
                                 <p class="descripcion">${productoId1.descripcion_larga}</p><br>
-                                <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
+                                <button class="btn-comprar" id="btn-agregar-carrito" onclick="agregarACarrito()" >Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                             <div class="info-producto">
                                 <p class="precio">$${productoId1.precio}</p>
                                 <p>${productoId1.descripcion_larga}</p><br>
-                                <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
+                                <button class="btn-comprar" id="btn-agregar-carrito" onclick="agregarACarrito()">Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
                             </div>
                         </div>
@@ -146,24 +146,6 @@
                         }
                     });
 
-                        document.getElementById('btn-agregar-carrito').addEventListener('click', function () {
-                        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-                        
-                        const productoExistente = carrito.find(producto => producto.id === productoId1.id);
-                        
-                        if (!productoExistente) {
-                            
-                            carrito.push(productoId1);
-                            localStorage.setItem('carrito', JSON.stringify(carrito));
-                            alert('Producto agregado al carrito');
-                            
-                            this.classList.add('disabled-button');
-                         } else {
-                            window.location.href = "/crystaleyes/carrito/carrito.html";
-                        }
-                    });
-
-
                     } else {
                         detalleProductoDiv.innerHTML = `<p>No se encontró información para este producto.</p>`;
                     }
@@ -176,6 +158,12 @@
         });
 
 
+    </script>
+    
+    <script>
+    function agregarACarrito() {
+        window.location.href = "/crystaleyes/carrito/carrito.html";
+    }
     </script>
          
     <script src="../script.js"></script>

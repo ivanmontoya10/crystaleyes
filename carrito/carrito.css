@@ -1,41 +1,12 @@
-#carrito-container{
+.carrito-container{
   background-color: #f9f9f9;
-  margin: 20px;
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  padding: 20px;  
+  margin: 20px; 
 }
 
-#nom-column{
-  text-align: right;
-}
-
-#carrito-container table {
-  width: 100%; 
+.table {
+  width: 100%;
   border-collapse: collapse;
-}
-
-#carrito-container th {
-  border: 1px solid white ; 
-  padding: 8px; 
-  text-align: left; 
-}
-
-#carrito-container td {
-  border: 1px solid #ddd; 
-  padding: 8px; 
-  text-align: left; 
-}
-
-#carrito-container td:first-child,
-#carrito-container th:first-child {
-  width: 100px; 
-}
-
-#carrito-container {
-  width: 50%; 
-  margin-right: 30px;
-  margin-left: 320px; 
+  margin-bottom: 20px;
 }
 
 .carrito-de-compras{
@@ -43,14 +14,34 @@
   text-align: Center; 
 }
 
-.btn {
-  padding: 8px 16px; 
-  border: none; 
-  border-radius: 4px;
-  background-color: #830c16;
-  color: #fff; 
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.btn:hover {
-  background-color: #830c16; 
+.table img {
+  max-width: 100px;
+  max-height: 100px;
 }
+
+.btn {
+ padding: 0.375rem 0.75rem;
+ font-weight: 400;
+ text-align: center;
+ cursor: pointer;
+ border: 1px solid transparent;
+ border-radius: 0.25rem;
+}
+
+.btn-danger {
+  background-color: #7e0909;
+  color: #fff;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #7e0909;
+}
+
