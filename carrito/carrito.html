@@ -30,7 +30,147 @@
 </header>
 
 <body>
- <!--Aqui va contenido-->Carrito
+
+    <h1 class="carrito-de-compras">Carrito de compras</h1><br><br>
+
+    <div id="carrito-container"></div>
+
+    <script>
+        let carrito = [];
+        
+        function cargarProductosDesdeLocalStorage() {
+            const storedCarrito = localStorage.getItem('carrito');
+    
+            if (storedCarrito) {
+                carrito = JSON.parse(storedCarrito);
+                mostrarCarrito();
+            }
+        }
+        
+        function cargarProductosDesdeJSON() {
+            fetch('http://localhost/crystaleyes/jsons/carrito.json')
+                .then(response => response.json())
+                .then(data => {
+                    carrito = [...carrito, ...data];
+                    mostrarCarrito();
+                })
+                .catch(error => console.error('Error al cargar productos:', error));
+        }
+        
+        function mostrarCarrito() {
+            const container = document.getElementById('carrito-container');
+            if (!container) {
+                console.error("El contenedor del carrito de compras no existe.");
+                return;
+            }
+            container.innerHTML = '';
+    
+            const encabezado = document.createElement('tr');
+            const imagenHeader = document.createElement('th');
+            imagenHeader.textContent = 'Imagen';
+            encabezado.appendChild(imagenHeader);
+    
+            const nombreHeader = document.createElement('th');
+            nombreHeader.textContent = 'Producto';
+            encabezado.appendChild(nombreHeader);
+    
+            const precioHeader = document.createElement('th');
+            precioHeader.textContent = 'Precio';
+            encabezado.appendChild(precioHeader);
+    
+            const cantidadHeader = document.createElement('th');
+            cantidadHeader.textContent = 'Cantidad';
+            encabezado.appendChild(cantidadHeader);
+    
+            const accionesHeader = document.createElement('th');
+            accionesHeader.textContent = '';
+            encabezado.appendChild(accionesHeader);
+    
+            const tabla = document.createElement('table');
+            tabla.className = 'table';
+            tabla.appendChild(encabezado);
+            container.appendChild(tabla);
+    
+            carrito.forEach((producto, index)=> {
+                const fila = document.createElement('tr');
+    
+                const imagenColumna = document.createElement('td');
+                const imagenProducto = document.createElement('img');
+                imagenProducto.src = producto.img1;
+                imagenProducto.className = 'card-img-top';
+                imagenProducto.alt = producto.nombre;
+                imagenColumna.appendChild(imagenProducto);
+                fila.appendChild(imagenColumna);
+    
+                const nombreColumna = document.createElement('td');
+                nombreColumna.textContent = producto.nombre;
+                fila.appendChild(nombreColumna);
+    
+                const precioColumna = document.createElement('td');
+                precioColumna.textContent = `$${producto.precio}`;
+                fila.appendChild(precioColumna);
+    
+                const cantidadColumna = document.createElement('td');
+                const cantidadInput = document.createElement('input');
+                cantidadInput.type = 'number';
+                cantidadInput.min = '1';
+                cantidadInput.max = '5';
+                cantidadInput.value = '1';
+                cantidadInput.value = producto.cantidad || 1; 
+                cantidadInput.className = 'form-control cantidad-input';
+                cantidadColumna.appendChild(cantidadInput);
+                fila.appendChild(cantidadColumna);
+    
+                const eliminarColumna = document.createElement('td');
+                const botonEliminar = document.createElement('button');
+                botonEliminar.className = 'btn btn-danger btn-sm eliminar-btn';
+                botonEliminar.textContent = 'Eliminar';
+                botonEliminar.onclick = () => eliminarDeListaDeseos(producto.id); // Función eliminar
+                eliminarColumna.appendChild(botonEliminar);
+                fila.appendChild(eliminarColumna);
+
+                cantidadInput.addEventListener('change', function () {
+                    carrito[index].cantidad = parseInt(this.value);
+                    mostrarCarrito();
+                });
+
+                cantidadInput.addEventListener('change', function () {
+                    carrito[index].cantidad = parseInt(this.value); 
+                    mostrarCarrito();
+                });
+
+    
+                tabla.appendChild(fila);
+            });
+    
+            // Calcular y mostrar el total a pagar
+            const total = calcularTotal();
+            const totalPagar = document.createElement('div');
+            totalPagar.textContent = `Total a pagar: $${total.toFixed(2)}`;
+            container.appendChild(totalPagar);
+        }
+    
+        function calcularTotal() {
+            let total = 0;
+            carrito.forEach(producto => {
+                const cantidad = producto.cantidad || 1;
+                total += producto.precio * cantidad; 
+            });
+            return total;
+        }
+    
+        function eliminarDeListaDeseos(id) {
+            carrito = carrito.filter(producto => producto.id !== id);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            mostrarCarrito();
+        }
+    
+        // Llamar a ambas funciones para cargar productos desde el almacenamiento local y el JSON
+        cargarProductosDesdeLocalStorage();
+        cargarProductosDesdeJSON();
+    
+    </script>
+    
 </body>
 
 <footer>
