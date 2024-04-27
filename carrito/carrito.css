@@ -1,4 +1,5 @@
-.carrito-container{
+
+#carrito-container{
   background-color: #f9f9f9;
   margin: 20px; 
 }
@@ -11,7 +12,7 @@
 
 .carrito-de-compras{
   font-family: Arial, sans-serif;
-  text-align: Center; 
+  text-align: Center;  
 }
 
 .table th,
@@ -44,4 +45,9 @@
 .btn-danger:hover {
   background-color: #7e0909;
 }
+
+
+
+
+
 
