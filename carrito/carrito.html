@@ -131,7 +131,7 @@
                 const botonEliminar = document.createElement('button');
                 botonEliminar.className = 'btn btn-danger btn-sm eliminar-btn';
                 botonEliminar.textContent = 'Eliminar';
-                botonEliminar.onclick = () => eliminarDeListaDeseos(producto.id); // Función eliminar
+                botonEliminar.onclick = () => eliminarDeCarrito(producto.id); // Función eliminar
                 eliminarColumna.appendChild(botonEliminar);
                 fila.appendChild(eliminarColumna);
 
@@ -170,7 +170,7 @@
             return total;
         }
     
-        function eliminarDeListaDeseos(id) {
+        function eliminarDeCarrito(id) {
             carrito = carrito.filter(producto => producto.id !== id);
             localStorage.setItem('carrito', JSON.stringify(carrito));
             mostrarCarrito();
