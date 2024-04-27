@@ -113,7 +113,7 @@
                                 <p class="precio">$${productoId1.precio}</p>
                                 <p class="descripcion">${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
-                                <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
+                                <button class="btn-comprar" id="btn-agregar-lista-deseos" onclick="agregarAListaDeseos()">Agregar a lista de deseos</button>
                             </div>
                         </div>
                         `;
@@ -126,7 +126,7 @@
                                 <p class="precio">$${productoId1.precio}</p>
                                 <p>${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
-                                <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
+                                <button class="btn-comprar" id="btn-agregar-lista-deseos" onclick="agregarAListaDeseos()">Agregar a lista de deseos</button>
                             </div>
                         </div>
                         `;
@@ -148,25 +148,7 @@
                         }
                     });
 
-                    document.getElementById('btn-agregar-lista-deseos').addEventListener('click', function () {
-                        let listaDeseos = JSON.parse(localStorage.getItem('listaDeseos')) || [];
-                        
-                        const productoExistente = listaDeseos.find(producto => producto.id === productoId1.id);
-                        
-                        if (!productoExistente) {
-                            
-                            listaDeseos.push(productoId1);
-                            localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
-                            alert('Producto agregado a lista de deseos');
-                            
-                            this.classList.add('disabled-button');
-                         } else {
-                            window.location.href = "/crystaleyes/listadeseos/listadeseos.html";
-                        }
-                    });
-
-
-
+                
                     } else {
                         // Mostrar un mensaje si el producto no es el de id 1
                         detalleProductoDiv.innerHTML = `<p>No se encontró información para este producto.</p>`;
@@ -179,10 +161,39 @@
 
         });
 
-
+    </script>
+    
+    <script>
+        function agregarAListaDeseos() {
+            window.location.href = "/crystaleyes/listadeseos/listadeseos.html";
+        }
     </script>
 
     <script src="../script.js"></script>
+
+    <section id="comentarios">
+        <div id="lista-comentarios">
+            <!-- Aquí se mostrarán los comentarios -->
+        </div>
+        <h2 class="reviews">Reseñas</h2>
+        <h4 class="añadir-comentarios">Agregar comentario</h4><br><br>
+        <form id="formulario-comentario">
+            <div>
+                <label for="nombre">Nombre de usuario:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="rating">
+                
+            </div>
+            <div>
+                <label for="comentario">Comentario:</label>
+                <textarea id="comentario" name="comentario" required></textarea>
+            </div>
+            
+            <button type="submit">Agregar Comentario</button>
+        </form>
+    </section>
+    
 </body>
 
 <footer>
