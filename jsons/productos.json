@@ -8,7 +8,8 @@
         "img1": "../Imgs/L1-1.png",
         "img2": "../Imgs/L1-2.png",
         "img3": "../Imgs/L1-3.png",
-        "categoria": "Oftálmico"
+        "categoria": "Oftálmico",
+        "destacado": "yes"
     },
     {
         "id": 2,
@@ -30,7 +31,8 @@
         "img1": "../Imgs/L3-1.png",
         "img2": "../Imgs/L3-2.png",
         "img3": "../Imgs/L3-3.png",
-        "categoria": "Oftálmico"
+        "categoria": "Oftálmico",
+        "destacado": "yes"
       },
       {
         "id": 4,
@@ -52,7 +54,8 @@
         "img1": "../Imgs/L5-1.png",
         "img2": "../Imgs/L5-2.png",
         "img3": "../Imgs/L5-3.png",
-        "categoria": "Contacto"
+        "categoria": "Contacto",
+        "destacado": "yes"
       },
       {
         "id": 6,
@@ -74,7 +77,8 @@
         "img1": "../Imgs/L7-1.png",
         "img2": "../Imgs/L7-2.png",
         "img3": "../Imgs/L7-3.png",
-        "categoria": "Sol"
+        "categoria": "Sol",
+        "destacado": "yes"
       },
       {
         "id": 8,
@@ -96,7 +100,8 @@
         "img1": "../Imgs/L9-1.png",
         "img2": "../Imgs/L9-2.png",
         "img3": "../Imgs/L9-3.png",
-        "categoria": "Sol"
+        "categoria": "Sol",
+        "destacado": "yes"
       },
       {
         "id": 10,
