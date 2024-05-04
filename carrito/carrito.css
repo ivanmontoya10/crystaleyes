@@ -46,7 +46,10 @@
   background-color: #7e0909;
 }
 
-
+.paypal-container {
+  display: flex;
+  justify-content: center;
+}
 
 
 

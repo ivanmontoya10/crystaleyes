@@ -486,7 +486,12 @@ footer {
     color: #ececec;
   }
 
+  header {
+    margin-bottom: 60px; /* Ajusta el espacio para dejar espacio para el menú */
+  }
+
   .nav {
+    z-index: 1000; 
     opacity: 0;
     visibility: hidden;
     display: flex;
