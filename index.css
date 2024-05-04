@@ -76,7 +76,7 @@ header {
 
 @media screen and (max-width: 750px) {
   .dropdown {
-    position: relative; 
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -89,14 +89,14 @@ header {
     top: 100%;
     right: 0;
     width: auto;
-    min-width: 150px; 
+    min-width: 150px;
     border: none;
     border-top: 1px solid #cccccc;
     border-radius: 0;
     padding: 0;
     box-shadow: none;
     background-color: #1c1c1c;
-    z-index: 1; 
+    z-index: 1;
   }
 
   .dropdown-menu li {
@@ -107,13 +107,14 @@ header {
     display: block;
     padding: 10px;
     font-size: 16px;
-    color: #ececec; 
-    text-decoration: none; 
-    transition: color 0.3s ease; 
+    color: #ececec;
+    text-decoration: none;
+    transition: color 0.3s ease;
   }
 
   .dropdown-menu li a:hover {
-    color: #bebabe; /* Cambiar el color del texto al pasar el mouse */
+    color: #bebabe;
+    /* Cambiar el color del texto al pasar el mouse */
   }
 }
 
@@ -613,4 +614,51 @@ footer {
     opacity: .7;
     transition: .3s;
   }
+}
+
+/*CARROUSEL*/
+.custom-carousel {
+  position: flex;
+  width: 80%;
+  overflow: hidden;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+.custom-carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  align-items: center;
+}
+
+.custom-carousel-item {
+  flex: 0 0 100%;
+  margin: 0 10px;
+}
+
+.custom-carousel-item img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.custom-carousel-prev,
+.custom-carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.custom-carousel-prev {
+  left: 10px;
+}
+
+.custom-carousel-next {
+  right: 10px;
 }
