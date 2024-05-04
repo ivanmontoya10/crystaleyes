@@ -44,7 +44,7 @@
     <h1 class="carrito-de-compras">Carrito de compras</h1><br><br>
 
     <div id="carrito-container"></div>
-    <div id="paypal-button-container"></div>
+    <div id="paypal-button-container" class="paypal-container"></div>
     
 
     <script>
@@ -190,30 +190,44 @@
     
     
     <script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            // Calcular el total a pagar
-            let total = calcularTotal();
-            
-            // Crea una orden para la transacción
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: total.toFixed(2) // Utiliza el total calculado
-                        
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            // Captura la aprobación del pago
-            return actions.order.capture().then(function(details) {
-                // Maneja la aprobación del pago
-                alert('Pago completado por ' + details.payer.name.given_name);
-                // Aquí puedes agregar lógica adicional, como redirigir al usuario a una página de confirmación.
-            });
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Calcular el total a pagar
+                let total = calcularTotal();
+                
+                // Crea una orden para la transacción
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat(total.toFixed(2)) // Utiliza el total calculado
+                            
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Captura la aprobación del pago
+                return actions.order.capture().then(function(details) {
+                    // Maneja la aprobación del pago
+                    alert('Pago completado por ' + details.payer.name.given_name);
+                    
+                });
+            },
+            style: {
+                color: 'gold', // Cambiar el color del botón a dorado
+                shape: 'pill', // Cambiar la forma del botón a redondeada
+                layout: 'vertical', // Cambiar el diseño del botón a vertical
+                label: 'pay', // Cambiar la etiqueta del botón
+                height: 40 // Cambiar la altura del botón
+            }
+        }).render('#paypal-button-container');
+    
+        // Estilo para centrar horizontalmente el contenedor del botón de PayPal
+        var paypalButtonContainer = document.getElementById('paypal-button-container');
+        if (paypalButtonContainer) {
+            paypalButtonContainer.style.display = 'flex';
+            paypalButtonContainer.style.justifyContent = 'center';
         }
-    }).render('#paypal-button-container');
     </script>
     
 </body>
