@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../index.css">
     <link rel="stylesheet" href="carrito.css">
-    <script src="https://www.paypal.com/sdk/js?client-id=AS9MYQsr7yMfZt115eZZAM1CcywSe9H-DgwP6OEOvVEECy_caxXOSDGf4QhafrAlxNSi4l0fBpNH4_R_&currency=MXN"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AamE-MncgwDiE7RV8b1V-5wuVN_IzL0qUY5AlIKXsODRTFDEYnaWh6l1eQrBSrh4WIOdVY_7XOy0sGN5&currency=MXN"></script>
 </head>
 <header>
     <img class="logo" src="/crystaleyes/imgs/logo.png" alt="Logo">
@@ -55,7 +55,7 @@
     <h1 class="carrito-de-compras">Carrito de compras</h1><br><br>
 
     <div id="carrito-container"></div>
-    <div id="paypal-button-container"></div>
+    <div id="paypal-button-container" class="paypal-container"></div>
     
 
     <script>
@@ -201,30 +201,38 @@
     
     
     <script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            // Calcular el total a pagar
-            let total = calcularTotal();
-            
-            // Crea una orden para la transacción
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: total.toFixed(2) // Utiliza el total calculado
-                        
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            // Captura la aprobación del pago
-            return actions.order.capture().then(function(details) {
-                // Maneja la aprobación del pago
-                alert('Pago completado por ' + details.payer.name.given_name);
-                // Aquí puedes agregar lógica adicional, como redirigir al usuario a una página de confirmación.
-            });
-        }
-    }).render('#paypal-button-container');
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Calcular el total a pagar
+                let total = calcularTotal();
+                
+                // Crea una orden para la transacción
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat(total.toFixed(2)) // Utiliza el total calculado
+                            
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Captura la aprobación del pago
+                return actions.order.capture().then(function(details) {
+                    // Maneja la aprobación del pago
+                    alert('Pago completado por ' + details.payer.name.given_name);
+                    
+                });
+            },
+            style: {
+                color: 'gold', // Cambiar el color del botón a dorado
+                shape: 'pill', // Cambiar la forma del botón a redondeada
+                layout: 'vertical', // Cambiar el diseño del botón a vertical
+                label: 'pay', // Cambiar la etiqueta del botón
+                height: 40 // Cambiar la altura del botón
+            }
+        }).render('#paypal-button-container');
+        
     </script>
     
 </body>
