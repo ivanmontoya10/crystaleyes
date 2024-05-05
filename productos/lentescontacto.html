@@ -30,7 +30,7 @@
             </li>
             <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
             <div class="search-form-container">
-                <form class="search-form" action="search.php" method="GET">
+                <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
                     <input type="text" name="query" placeholder="Buscar...">
                     <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
@@ -49,7 +49,16 @@
 </header>
 
 <body>
-    <h1 style="padding: 30px;">Categoría: Lentes de contacto</h1>
+    <h1 style="padding: 20px;">Categoría: Lentes de contacto</h1>
+    <div class="filtros">
+        <select id="ordenar">
+            <option value="" disabled selected>Ordenar por</option>
+            <option value="precio_asc">Precio - Menor a Mayor</option>
+            <option value="precio_desc">Precio - Mayor a Menor</option>
+            <option value="nombre_asc">Nombre - A a Z</option>
+            <option value="nombre_desc">Nombre - Z a A</option>
+        </select>
+    </div>
     <div id="productos" class="productos"></div>
     <script src="lentescontacto.js"></script>
 </body>

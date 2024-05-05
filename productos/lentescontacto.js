@@ -1,4 +1,5 @@
 let productos = [];
+let productosContacto = [];
 
 const verDetalle = (productoId) => {
     const producto = productos.find(p => p.id === productoId);
@@ -11,24 +12,24 @@ const verDetalle = (productoId) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('http://localhost/crystaleyes/jsons/productos.json', {
-        method: 'GET',
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(data => {
-        productos = data;
+    const cargarProductos = () => {
+        fetch('http://localhost/crystaleyes/jsons/productos.json', {
+            method: 'GET',
+            credentials: 'include'
+        })
+            .then(response => response.json())
+            .then(data => {
+                productos = data;
 
-        const productosContacto = data.filter(producto => producto.categoria === "Contacto");
-        const productosDiv = document.getElementById('productos');
-        productosDiv.innerHTML = '';
+                productosContacto = data.filter(producto => producto.categoria === "Contacto");
+                const productosDiv = document.getElementById('productos');
+                productosDiv.innerHTML = '';
 
-        productosContacto.forEach(producto => {
-            const productoDiv = document.createElement('div');
-            productoDiv.classList.add('producto-card');
+                productosContacto.forEach(producto => {
+                    const productoDiv = document.createElement('div');
+                    productoDiv.classList.add('producto-card');
 
-            if (producto.categoria === "Contacto") { 
-                productoDiv.innerHTML = `
+                    productoDiv.innerHTML = `
                     <div>
                         <img src="${producto.img1}">
                         <h2>${producto.nombre}</h2>
@@ -37,11 +38,65 @@ document.addEventListener("DOMContentLoaded", () => {
                         <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
                     </div>
                 `;
-            }
+
+                    productosDiv.appendChild(productoDiv);
+                });
+            })
+            .catch(error => console.error('Error al cargar el archivo JSON:', error));
+    };
+    const ordenarProductos = () => {
+        const selector = document.getElementById('ordenar');
+        const criterio = selector.value;
+
+        switch (criterio) {
+            case 'precio_asc':
+                productosContacto.sort((a, b) => a.precio - b.precio);
+                break;
+            case 'precio_desc':
+                productosContacto.sort((a, b) => b.precio - a.precio);
+                break;
+            case 'nombre_asc':
+                productosContacto.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                break;
+            case 'nombre_desc':
+                productosContacto.sort((a, b) => b.nombre.localeCompare(a.nombre));
+                break;
+            default:
+                break;
+        }
+
+        renderizarProductos(productosContacto);
+    };
+
+    
+    // Función para renderizar los productos
+    const renderizarProductos = (productos) => {
+        const productosDiv = document.getElementById('productos');
+        productosDiv.innerHTML = '';
+
+        productos.forEach(producto => {
+            const productoDiv = document.createElement('div');
+            productoDiv.classList.add('producto-card');
+            productoDiv.innerHTML = `
+                <div>
+                    <img src="${producto.img1}">
+                    <h2>${producto.nombre}</h2>
+                    <p class="precio">$${producto.precio}</p>
+                    <p>${producto.descripcion_larga}</p>
+                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                </div>
+            `;
+
             productosDiv.appendChild(productoDiv);
         });
-    })
-    .catch(error => console.error('Error al cargar el archivo JSON:', error));
+    };
+
+    // Event listener para el cambio en el selector de orden
+    const selectorOrden = document.getElementById('ordenar');
+    selectorOrden.addEventListener('change', ordenarProductos);
+
+    // Cargar los productos al inicio
+    cargarProductos();
 
     const nav = document.querySelector("#nav");
     const abrir = document.querySelector("#abrir");
