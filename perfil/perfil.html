@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="perfil.css">
 </head>
 <header>
-    <img class="logo" src="/crystaleyes/imgs/logo.png" alt="Logo">
+    <img class="logo" src="../imgs/logo.png" alt="Logo">
     <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
     <nav class="nav" id="nav">
         <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
@@ -48,31 +48,81 @@
     </nav>
 </header>
 <body>
- <!--Aqui va contenido-->Perfil
-
- <div class="account-management">
+ <!--Aqui va contenido-->
+ <div class="perfil-container">
     <script src="perfil.js"></script>
-    <h2>Administrar Cuenta</h2>
-    <form id="updateUsernameForm">
-        <label for="username" class="label-text">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username" class="input-field">
-        <button type="button" onclick="updateUsername()" class="update-button">Actualizar Nombre de Usuario</button>
-    </form>
-    <form id="updateEmailForm">
-        <label for="email" class="label-text">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" class="input-field">
-        <button type="button" onclick="updateEmail()" class="update-button">Actualizar Correo Electrónico</button>
-    </form>
-    <form id="updatePasswordForm">
-        <label for="password" class="label-text">Nueva Contraseña:</label>
-        <input type="password" id="password" name="password" class="input-field">
-        <button type="button" onclick="updatePassword()" class="update-button">Cambiar Contraseña</button>
-    </form>
-    <form id="updateAddressForm">
-        <label for="address" class="label-text">Dirección de Envío:</label>
-        <input type="text" id="address" name="address" class="input-field wide-input">
-        <button type="button" onclick="updateAddress()" class="update-button">Actualizar Dirección</button>
-    </form>
+    <div class="historial-pedidos">
+        <h2>Historial de pedidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID de Orden</th>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Fecha</th>
+                    <th>Estado de Pago</th>
+                    <th>Estado de Pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ejemplo de fila de datos -->
+                <tr>
+                    <td>#00016</td>
+                    <td>Armazon Rosa RayBan</td>
+                    <td>Armazon Rosado, Nueva Linea RayBan 2024, diseño redondo</td>
+                    <td>1</td>
+                    <td>$2800.00</td>
+                    <td>06 de Mayo de 2024</td>
+                    <td>Pagado</td>
+                    <td>En Proceso</td>
+                </tr>
+                <!-- Más filas según sea necesario -->
+            </tbody>
+        </table>
+    </div>
+    <div class="detalles-cuenta">
+        <h2>Detalles de la cuenta</h2>
+        <div class="info-cuenta">
+            <div class="avatar">
+                <img src="../imgs/perfil.jpg" alt="Avatar del Usuario">
+            </div>
+            <div class="datos-cuenta">
+                <p><strong>Nombre:</strong> Usuario Ejemplo "Cristalito" </p>
+                <p><strong>Correo:</strong> user@example.com</p>
+                <p><strong>Teléfono:</strong> 1234567890</p>
+                <p><strong>Dirección:</strong> Calle Principal 123, Ciudad, País</p>
+                <p><strong>Código Postal:</strong> 12345</p>
+                <p><strong>Fecha de Nacimiento:</strong> 2002-01-29</p>
+                <p><strong>País/Región:</strong> México</p>
+            </div>
+        </div>
+        <button type="button" class="editar-button" onclick="toggleModal()">Editar</button>
+    </div>
+</div>
+
+<!-- Modal Pop-up para edición -->
+<div class="modal" id="editModal">
+    <div class="modal-content">
+        <span class="close-button" onclick="toggleModal()">&times;</span>
+        <h2>Editar Detalles de la Cuenta</h2>
+        <form id="editForm">
+            <label for="modal-username">Nombre:</label>
+            <input type="text" id="modal-username" name="username" class="input-modal">
+            
+            <label for="modal-email">Correo Electrónico:</label>
+            <input type="email" id="modal-email" name="email" class="input-modal">
+            
+            <label for="modal-phone">Teléfono:</label>
+            <input type="text" id="modal-phone" name="phone" class="input-modal">
+            
+            <label for="modal-address">Dirección:</label>
+            <input type="text" id="modal-address" name="address" class="input-modal">
+            
+            <button type="submit" class="submit-modal">Guardar Cambios</button>
+        </form>
+    </div>
 </div>
 
 </body>
