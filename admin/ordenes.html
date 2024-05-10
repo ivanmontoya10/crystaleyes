@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Órdenes de Compra - Panel de Administrador</title>
+    <link rel="stylesheet" href="menusuperior.css">
+    <link rel="stylesheet" href="menulateral.css">
+    <link rel="stylesheet" href="ordenes.css">
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <a class="active" href="dashboard.html">Inicio</a>
+        <a href="ordenes.html">Órdenes</a>
+        <a href="productos.html">Productos</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="../index.html">Regresar al sitio</a>
+    </div>
+
+    <div style="margin-left: 200px; padding: 20px;">
+        <div class="container">
+            <h2>Órdenes de Compra</h2>
+
+            <div id="orders-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar el archivo JSON de órdenes
+        fetch('/crystaleyes/jsons/ordenes.json')
+            .then(response => response.json())
+            .then(orders => {
+                // Obtener el contenedor de órdenes
+                const ordersContainer = document.getElementById('orders-container');
+
+                // Generar el HTML para cada orden en orden inverso
+                for (let i = orders.length - 1; i >= 0; i--) {
+                    const order = orders[i];
+                    const orderCard = document.createElement('div');
+                    orderCard.classList.add('order-card');
+
+                    const orderTitle = document.createElement('h3');
+                    orderTitle.textContent = `Orden #${order.numero}`;
+
+                    const orderInfoList = document.createElement('ul');
+                    const dateItem = document.createElement('li');
+                    dateItem.textContent = `Fecha: ${order.fecha}`;
+                    orderInfoList.appendChild(dateItem);
+
+                    const productsItem = document.createElement('li');
+                    const productsList = document.createElement('ul');
+                    order.productos.forEach(product => {
+                        const productItem = document.createElement('li');
+                        productItem.textContent = `${product.nombre} - Modelo: ${product.modelo}`;
+                        productsList.appendChild(productItem);
+                    });
+                    productsItem.appendChild(productsList);
+                    orderInfoList.appendChild(productsItem);
+
+                    const totalItem = document.createElement('li');
+                    totalItem.textContent = `Total: $${order.total}`;
+                    orderInfoList.appendChild(totalItem);
+
+                    orderCard.appendChild(orderTitle);
+                    orderCard.appendChild(orderInfoList);
+
+                    // Agregar la clase de estilo para la última orden
+                    if (i === orders.length - 1) {
+                        orderCard.classList.add('last-order');
+                    }
+
+                    ordersContainer.appendChild(orderCard);
+                }
+            })
+            .catch(error => console.error('Error al cargar las órdenes:', error));
+    </script>
+
+</body>
+
+</html>

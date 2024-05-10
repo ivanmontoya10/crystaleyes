@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - Panel de Administrador</title>
+    <link rel="stylesheet" href="menusuperior.css">
+    <link rel="stylesheet" href="menulateral.css">
+    <link rel="stylesheet" href="clientes.css">
+</head>
+
+<body>
+    <div class="sidenav">
+        <a class="active" href="dashboard.html">Inicio</a>
+        <a href="ordenes.html">Órdenes</a>
+        <a href="productos.html">Productos</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="../index.html">Regresar al sitio</a>
+    </div>
+
+    <div style="margin-left: 200px; padding: 20px;">
+        <div class="container">
+            <h2>Clientes</h2>
+            <button>Agregar usuario (temporal)</button>
+            <div id="clients-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar el archivo JSON de clientes
+        fetch('/crystaleyes/jsons/clientes.json')
+            .then(response => response.json())
+            .then(clients => {
+                // Obtener el contenedor de clientes
+                const clientsContainer = document.getElementById('clients-container');
+
+                // Generar el HTML para cada cliente
+                clients.forEach(client => {
+                    const clientCard = document.createElement('div');
+                    clientCard.classList.add('client-card');
+
+                    const clientName = document.createElement('h3');
+                    clientName.textContent = client.nombre;
+
+                    const clientInfoList = document.createElement('ul');
+                    const emailItem = document.createElement('li');
+                    emailItem.textContent = `Correo: ${client.correo}`;
+                    clientInfoList.appendChild(emailItem);
+
+                    const addressItem = document.createElement('li');
+                    addressItem.textContent = `Dirección: ${client.direccion}`;
+                    clientInfoList.appendChild(addressItem);
+
+                    const registrationDateItem = document.createElement('li');
+                    registrationDateItem.textContent = `Fecha de Registro: ${client.fecha_registro}`;
+                    clientInfoList.appendChild(registrationDateItem);
+
+                    const edit = document.createElement('button');
+                    edit.textContent = `Editar cliente ${client.id} (temporal)`;
+                    clientInfoList.appendChild(edit);
+
+                    const drop = document.createElement('button');
+                    drop.textContent = `Eliminar cliente ${client.id} (temporal)`;
+                    clientInfoList.appendChild(drop);
+
+                    clientCard.appendChild(clientName);
+                    clientCard.appendChild(clientInfoList);
+
+                    clientsContainer.appendChild(clientCard);
+                });
+            })
+            .catch(error => console.error('Error al cargar los clientes:', error));
+    </script>
+
+</body>
+
+</html>

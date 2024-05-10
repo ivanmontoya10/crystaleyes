@@ -1,0 +1,24 @@
+/* Estilos específicos para las órdenes */
+.order-card {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.order-card h3 {
+    margin-top: 0;
+}
+
+.order-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-card ul li {
+    margin-bottom: 5px;
+}
+
+/* Estilo para la última orden */
+.order-card.last-order {
+    background-color: #d9ead3; /* Color verde pastel */
+}

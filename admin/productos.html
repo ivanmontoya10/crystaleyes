@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Panel de Administrador</title>
+    <link rel="stylesheet" href="menusuperior.css">
+    <link rel="stylesheet" href="menulateral.css">
+    <link rel="stylesheet" href="productos.css">
+</head>
+
+<body>
+    <div class="sidenav">
+        <a class="active" href="dashboard.html">Inicio</a>
+        <a href="ordenes.html">Órdenes</a>
+        <a href="productos.html">Productos</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="../index.html">Regresar al sitio</a>
+    </div>
+
+    <div style="margin-left: 200px; padding: 20px;">
+        <div class="container">
+            <h2>Productos</h2>
+            <button>Agregar producto (temporal)</button>
+            <div id="products-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar el archivo JSON de productos
+        fetch('/crystaleyes/jsons/productos.json')
+            .then(response => response.json())
+            .then(products => {
+                // Obtener el contenedor de productos
+                const productsContainer = document.getElementById('products-container');
+
+                // Generar el HTML para cada producto
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+
+                    const productName = document.createElement('h3');
+                    productName.textContent = product.nombre;
+
+                    const productInfoList = document.createElement('ul');
+                    const descriptionItem = document.createElement('li');
+                    descriptionItem.textContent = `Descripción: ${product.descripcion_larga}`;
+                    productInfoList.appendChild(descriptionItem);
+
+                    const priceItem = document.createElement('li');
+                    priceItem.textContent = `Precio: $${product.precio.toFixed(2)}`;
+                    productInfoList.appendChild(priceItem);
+
+                    const edit = document.createElement('button');
+                    edit.textContent = `Editar producto ${product.id} (temporal)`;
+                    productInfoList.appendChild(edit);
+
+                    const drop = document.createElement('button');
+                    drop.textContent = `Eliminar producto ${product.id} (temporal)`;
+                    productInfoList.appendChild(drop);
+
+                    productCard.appendChild(productName);
+                    productCard.appendChild(productInfoList);
+
+                    productsContainer.appendChild(productCard);
+                });
+            })
+            .catch(error => console.error('Error al cargar los productos:', error));
+    </script>
+
+</body>
+
+</html>

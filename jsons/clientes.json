@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "nombre": "Kevin Macias",
+        "correo": "kevin@example.com",
+        "direccion": "Calle 123, Ciudad X",
+        "fecha_registro": "2024-05-06"
+    },
+    {
+        "id": 2,
+        "nombre": "María González",
+        "correo": "maria@example.com",
+        "direccion": "Avenida 456, Ciudad Y",
+        "fecha_registro": "2024-05-05"
+    },
+    {
+        "id": 3,
+        "nombre": "Alma Covarruvias",
+        "correo": "alma@example.com",
+        "direccion": "Calle 556, Ciudad J",
+        "fecha_registro": "2024-05-05"
+    },
+    {
+        "id": 4,
+        "nombre": "Magalí Chavez",
+        "correo": "magali@example.com",
+        "direccion": "Avenida 456, Ciudad n",
+        "fecha_registro": "2021-03-02"
+    },
+    {
+        "id": 5,
+        "nombre": "Adolfo Sanchez",
+        "correo": "adolfo@example.com",
+        "direccion": "Avenida 456, Ciudad Y",
+        "fecha_registro": "2024-05-05"
+    },
+    {
+        "id": 6,
+        "nombre": "Zacarias Macias",
+        "correo": "zacarias@example.com",
+        "direccion": "Avenida 456, Ciudad Y",
+        "fecha_registro": "2024-05-05"
+    },
+    {
+        "id": 7,
+        "nombre": "Elber Ramirez",
+        "correo": "elber@example.com",
+        "direccion": "Avenida 456, Ciudad Y",
+        "fecha_registro": "2024-05-05"
+    },
+    {
+        "id": 8,
+        "nombre": "Alfonso Recio",
+        "correo": "beni@example.com",
+        "direccion": "Avenida 456, Ciudad Y",
+        "fecha_registro": "2024-05-05"
+    },
+    {
+        "id": 9,
+        "nombre": "Ana Mondragon",
+        "correo": "maria@example.com",
+        "direccion": "Avenida 456, Ciudad Y",
+        "fecha_registro": "2024-05-05"
+    }
+]

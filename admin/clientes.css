@@ -1,0 +1,25 @@
+/* Estilos específicos para las tarjetas de clientes */
+.client-card {
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.client-card h3 {
+    margin-top: 0;
+}
+
+.client-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.client-card ul li {
+    margin-bottom: 5px;
+}
+
+.client-card ul li button {
+    margin-bottom: 5px;
+}

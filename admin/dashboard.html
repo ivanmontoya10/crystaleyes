@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Panel de Administrador</title>
+    <link rel="stylesheet" href="menusuperior.css">
+    <link rel="stylesheet" href="menulateral.css">
+    <link rel="stylesheet" href="resumen.css">
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <a class="active" href="dashboard.html">Inicio</a>
+        <a href="ordenes.html">Órdenes</a>
+        <a href="productos.html">Productos</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="../index.html">Regresar al sitio</a>
+    </div>
+
+    <div style="margin-left: 200px; padding: 20px;">
+        <div class="container">
+            <h2>Bienvenido al Dashboard</h2>
+
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <h3>Resumen de Órdenes</h3>
+                    <p id="orders-summary">Cargando...</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Resumen de Productos</h3>
+                    <p id="products-summary">Cargando...</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Resumen de Clientes</h3>
+                    <p id="clients-summary">Cargando...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar el resumen de órdenes
+        fetch('ordenes.json')
+            .then(response => response.json())
+            .then(orders => {
+                const ordersSummary = document.getElementById('orders-summary');
+                ordersSummary.textContent = `Total de órdenes: ${orders.length}`;
+            })
+            .catch(error => console.error('Error al cargar el resumen de órdenes:', error));
+
+        // Cargar el resumen de productos
+        fetch('productos.json')
+            .then(response => response.json())
+            .then(products => {
+                const productsSummary = document.getElementById('products-summary');
+                productsSummary.textContent = `Total de productos: ${products.length}`;
+            })
+            .catch(error => console.error('Error al cargar el resumen de productos:', error));
+
+        // Cargar el resumen de clientes
+        fetch('clientes.json')
+            .then(response => response.json())
+            .then(clients => {
+                const clientsSummary = document.getElementById('clients-summary');
+                clientsSummary.textContent = `Total de clientes: ${clients.length}`;
+            })
+            .catch(error => console.error('Error al cargar el resumen de clientes:', error));
+    </script>
+
+</body>
+
+</html>

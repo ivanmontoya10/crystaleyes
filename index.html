@@ -39,8 +39,10 @@
                     <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div>
-            <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart" style="font-size: 24px"></i></a></li>
+            <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square"
+                        style="font-size: 24px"></i></a></li>
+            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart"
+                        style="font-size: 24px"></i></a></li>
             <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-cart3" style="font-size: 24px"></i></a></li>
             <li><a href="/crystaleyes/loginregister/login.html"><button class="icon-button login-button"><i
                             class="bi bi-person-fill"></i><span class="login-text">Iniciar
@@ -53,7 +55,75 @@
 </header>
 
 <body>
-    <div>Hola</div>
+    <div>
+        <div class="custom-carousel">
+            <div class="custom-carousel-container">
+                <div class="custom-carousel-item">
+                    <img src="imgs/L1-1.png" alt="Image 1">
+                    <p class="carousel-text">Lente Oftálmico Gucci GG0027O Havana</p>
+                    <a class="carousel-text" href="/crystaleyes/productos/producto1.html">Ver producto</a>
+                </div>
+                <div class="custom-carousel-item">
+                    <img src="imgs/L1-2.png" alt="Image 2">
+                    <p class="carousel-text">2</p>
+                </div>
+                <div class="custom-carousel-item">
+                    <img src="imgs/L1-3.png" alt="Image 3">
+                    <p class="carousel-text">3</p>
+                </div>
+                <div class="custom-carousel-item">
+                    <img src="imgs/L2-1.png" alt="Image 4">
+                    <p class="carousel-text">4</p>
+                </div>
+            </div>
+            <button class="custom-carousel-prev">Prev</button>
+            <button class="custom-carousel-next">Next</button>
+        </div><br>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const carouselContainer = document.querySelector('.custom-carousel-container');
+                const carouselItems = document.querySelectorAll('.custom-carousel-item');
+                const prevBtn = document.querySelector('.custom-carousel-prev');
+                const nextBtn = document.querySelector('.custom-carousel-next');
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                    carouselContainer.style.transform = `translateX(-${index * 100}%)`;
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % carouselItems.length;
+                    showSlide(currentIndex);
+                }
+
+                function startAutoSlide() {
+                    timer = setInterval(nextSlide, 3000);
+                }
+
+                function restartAutoSlide() {
+                    clearInterval(timer);
+                    startAutoSlide();
+                }
+
+                prevBtn.addEventListener('click', function () {
+                    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+                    showSlide(currentIndex);
+                    restartAutoSlide();
+                });
+
+                nextBtn.addEventListener('click', function () {
+                    currentIndex = (currentIndex + 1) % carouselItems.length;
+                    showSlide(currentIndex);
+                    restartAutoSlide();
+                });
+                startAutoSlide();
+            });
+        </script>
+
+
+    </div>
     <script src="todos.js"></script>
 
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -109,7 +179,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             $('#exampleModalLong').modal('show');
 
@@ -117,7 +187,7 @@
                 $('#exampleModalLong').modal('hide');
             });
         });
-    </script>
+    </script> -->
     <script src="index.js"></script>
 
 </body>

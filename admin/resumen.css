@@ -1,0 +1,23 @@
+/* Estilos para las tarjetas de resumen */
+.summary-cards {
+    display: flex;
+    flex-direction: column; /* Cambiamos la dirección a vertical */
+    margin-top: 20px;
+}
+
+.summary-card {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-bottom: 20px; /* Añadimos margen inferior entre las tarjetas */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h3 {
+    margin-top: 0;
+}
+
+.summary-card p {
+    margin: 0;
+}
