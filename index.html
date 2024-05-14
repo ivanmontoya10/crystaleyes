@@ -15,7 +15,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="/crystaleyes/productos/producto.css">
+    <link rel="stylesheet" href="destacados.css">
 </head>
+<div class="msj-act">Bienvenido a nuestra tienda</div>
 <header>
     <img class="logo" src="imgs/logo.png" alt="Logo">
     <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
@@ -55,110 +57,35 @@
 </header>
 
 <body>
-    <div>
-        <div class="resp-car"></div>
-        <div class="custom-carousel">
-            <div class="custom-carousel-container">
-                <div class="custom-carousel-item">
-                    <img src="imgs/L1-1.png" alt="Image 1">
-                    <div class="back-img">
-                        <p class="carousel-text">Lente Oftálmico Gucci GG0027O Havana</p>
-                        <a class="carousel-link" href="/crystaleyes/productos/producto1.html">Ver producto</a>
-                    </div>
-                </div>
-                <div class="custom-carousel-item">
-                    <img src="imgs/L9-1.png" alt="Image 2">
-                    <p class="carousel-text">Lentes de Sol Versace VE4307 Negro</p>
-                    <a class="carousel-link" href="/crystaleyes/productos/producto9.html">Ver producto</a>
-                </div>
-                <div class="custom-carousel-item">
-                    <img src="imgs/L10-1.png" alt="Image 3" class="img-res-car">
-                    <p class="carousel-text">Lentes de Contacto Biomedics Tórico</p>
-                    <a class="carousel-link" href="/crystaleyes/productos/producto10.html">Ver producto</a>
-                </div>
-                <div class="custom-carousel-item">
-                    <img src="imgs/L4-1.png" alt="Image 3">
-                    <p class="carousel-text">Lente Oftálmico Seen SNFF10 Vino</p>
-                    <a class="carousel-link" href="/crystaleyes/productos/producto4.html">Ver producto</a>
-                </div>
-            </div>
-            <button class="custom-carousel-prev">
-                <
-                </button>
-                    <button class="custom-carousel-next">></button>
-        </div><br>
+    <div class="fondoshop">
+        <div class="backshop">
+            <img src="imgs/fondoshop1.jpg" preload="auto">
+            <p class="back-text">Explora nuestros últimos productos</p>
+            <a class="back-link" href="/crystaleyes/productos/todos.html">Comprar todo</a>
+        </div>
+    </div>
 
-        <br><br>
-        <div class="data-info">
-            <div class="part">
-                <div class="data-l">
-                    <h3>¿Quienes somos?</h3>
-                    <p>Somos los meros meros.</p>
-                </div>
-                <div class="data-img-r">
-                    <img src="imgs/L4-1.png">
-                </div>
-            </div>
-            <div style="padding-bottom: 30px;"></div>
-            <div class="part">
-                <div class="data-img-l">
-                    <img src="imgs/L4-1.png">
-                </div>
-                <div class="data-r">
-                    <h3>¿Quienes somos?</h3>
-                    <p>Somos los meros meros.</p>
-                </div>
-            </div>
-        </div><br><br>
-
-        <h1>Productos destacados</h1>
-        <div id="productos" class="productos">
+    <div class="dest">
+        <h3>Productos destacados</h3>
+        <div id="productos-des" class="productos-des">
             <script src="destacados.js"></script>
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const carouselContainer = document.querySelector('.custom-carousel-container');
-                const carouselItems = document.querySelectorAll('.custom-carousel-item');
-                const prevBtn = document.querySelector('.custom-carousel-prev');
-                const nextBtn = document.querySelector('.custom-carousel-next');
-                let currentIndex = 0;
-
-                function showSlide(index) {
-                    carouselContainer.style.transform = `translateX(-${index * 100}%)`;
-                }
-
-                function nextSlide() {
-                    currentIndex = (currentIndex + 1) % carouselItems.length;
-                    showSlide(currentIndex);
-                }
-
-                function startAutoSlide() {
-                    timer = setInterval(nextSlide, 3000);
-                }
-
-                function restartAutoSlide() {
-                    clearInterval(timer);
-                    startAutoSlide();
-                }
-
-                prevBtn.addEventListener('click', function () {
-                    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-                    showSlide(currentIndex);
-                    restartAutoSlide();
-                });
-
-                nextBtn.addEventListener('click', function () {
-                    currentIndex = (currentIndex + 1) % carouselItems.length;
-                    showSlide(currentIndex);
-                    restartAutoSlide();
-                });
-                startAutoSlide();
-            });
-        </script>
-
-
     </div>
+
+    <div class="btn-ver-todo">
+        <div class="vertodo">
+            <a href="/crystaleyes/productos/todos.html">Ver todo</a>
+            <div style="margin-bottom: 30px;"></div>
+            <hr>
+        </div>
+    </div>
+
+    <div class="esquina-inferior">
+        💬Chat
+    </div>
+
+
+    <div style="margin-bottom: 60px;"></div>
 
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">

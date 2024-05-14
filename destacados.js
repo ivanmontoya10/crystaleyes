@@ -21,20 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const productosDestacados = data.filter(producto => producto.destacado === "yes");
 
-            const productosDiv = document.getElementById('productos');
+            const productosDiv = document.getElementById('productos-des');
             productosDiv.innerHTML = '';
 
             productosDestacados.forEach(producto => {
                 const productoDiv = document.createElement('div');
-                productoDiv.classList.add('producto-card');
+                productoDiv.classList.add('producto-card-des');
                 productoDiv.innerHTML = `
-                <div>
                     <img src="/crystaleyes/imgs/${producto.img1}">
                     <h2>${producto.nombre}</h2>
-                    <p class="precio">$${producto.precio}</p>
-                    <p>${producto.descripcion_larga}</p>
+                    <p class="precio-des">$${producto.precio} MXN</p>
+                    
                     <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                </div>
             `;
 
                 productosDiv.appendChild(productoDiv);
