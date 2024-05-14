@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="producto.css">
+    <link rel="stylesheet" href="/crystaleyes/productos/producto.css">
 </head>
 <header>
     <img class="logo" src="imgs/logo.png" alt="Logo">
@@ -56,30 +56,65 @@
 
 <body>
     <div>
+        <div class="resp-car"></div>
         <div class="custom-carousel">
             <div class="custom-carousel-container">
                 <div class="custom-carousel-item">
                     <img src="imgs/L1-1.png" alt="Image 1">
-                    <p class="carousel-text">Lente Oftálmico Gucci GG0027O Havana</p>
-                    <a class="carousel-text" href="/crystaleyes/productos/producto1.html">Ver producto</a>
+                    <div class="back-img">
+                        <p class="carousel-text">Lente Oftálmico Gucci GG0027O Havana</p>
+                        <a class="carousel-link" href="/crystaleyes/productos/producto1.html">Ver producto</a>
+                    </div>
                 </div>
                 <div class="custom-carousel-item">
-                    <img src="imgs/L1-2.png" alt="Image 2">
-                    <p class="carousel-text">2</p>
+                    <img src="imgs/L9-1.png" alt="Image 2">
+                    <p class="carousel-text">Lentes de Sol Versace VE4307 Negro</p>
+                    <a class="carousel-link" href="/crystaleyes/productos/producto9.html">Ver producto</a>
                 </div>
                 <div class="custom-carousel-item">
-                    <img src="imgs/L1-3.png" alt="Image 3">
-                    <p class="carousel-text">3</p>
+                    <img src="imgs/L10-1.png" alt="Image 3" class="img-res-car">
+                    <p class="carousel-text">Lentes de Contacto Biomedics Tórico</p>
+                    <a class="carousel-link" href="/crystaleyes/productos/producto10.html">Ver producto</a>
                 </div>
                 <div class="custom-carousel-item">
-                    <img src="imgs/L2-1.png" alt="Image 4">
-                    <p class="carousel-text">4</p>
+                    <img src="imgs/L4-1.png" alt="Image 3">
+                    <p class="carousel-text">Lente Oftálmico Seen SNFF10 Vino</p>
+                    <a class="carousel-link" href="/crystaleyes/productos/producto4.html">Ver producto</a>
                 </div>
             </div>
-            <button class="custom-carousel-prev">Prev</button>
-            <button class="custom-carousel-next">Next</button>
+            <button class="custom-carousel-prev">
+                <
+                </button>
+                    <button class="custom-carousel-next">></button>
         </div><br>
 
+        <br><br>
+        <div class="data-info">
+            <div class="part">
+                <div class="data-l">
+                    <h3>¿Quienes somos?</h3>
+                    <p>Somos los meros meros.</p>
+                </div>
+                <div class="data-img-r">
+                    <img src="imgs/L4-1.png">
+                </div>
+            </div>
+            <div style="padding-bottom: 30px;"></div>
+            <div class="part">
+                <div class="data-img-l">
+                    <img src="imgs/L4-1.png">
+                </div>
+                <div class="data-r">
+                    <h3>¿Quienes somos?</h3>
+                    <p>Somos los meros meros.</p>
+                </div>
+            </div>
+        </div><br><br>
+
+        <h1>Productos destacados</h1>
+        <div id="productos" class="productos">
+            <script src="destacados.js"></script>
+        </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -124,7 +159,6 @@
 
 
     </div>
-    <script src="todos.js"></script>
 
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
@@ -178,17 +212,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <script>
-        $(document).ready(function () {
-            $('#exampleModalLong').modal('show');
-
-            $('#aceptarBtn').click(function () {
-                $('#exampleModalLong').modal('hide');
-            });
-        });
-    </script> -->
-    <script src="index.js"></script>
 
 </body>
 

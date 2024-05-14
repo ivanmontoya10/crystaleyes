@@ -12,25 +12,23 @@ const verDetalle = (productoId) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cargarProductos = () => {
+    fetch('http://localhost/crystaleyes/jsons/productos.json', {
+        method: 'GET',
+        credentials: 'include'
+    })
+        .then(response => response.json())
+        .then(data => {
+            productos = data;
 
-        fetch('http://localhost/crystaleyes/jsons/productos.json', {
-            method: 'GET',
-            credentials: 'include'
-        })
-            .then(response => response.json())
-            .then(data => {
-                productos = data;
+            productosOftalmicos = data.filter(producto => producto.categoria === "Sol");
 
-                productosSol = data.filter(producto => producto.categoria === "Sol");
-                const productosDiv = document.getElementById('productos');
-                productosDiv.innerHTML = '';
+            const productosDiv = document.getElementById('productos');
+            productosDiv.innerHTML = '';
 
-                productosSol.forEach(producto => {
-                    const productoDiv = document.createElement('div');
-                    productoDiv.classList.add('producto-card');
-
-                    productoDiv.innerHTML = `
+            productosOftalmicos.forEach(producto => {
+                const productoDiv = document.createElement('div');
+                productoDiv.classList.add('producto-card');
+                productoDiv.innerHTML = `
                     <div>
                         <img src="${producto.img1}">
                         <h2>${producto.nombre}</h2>
@@ -40,36 +38,38 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
-                    productosDiv.appendChild(productoDiv);
-                });
-            })
-            .catch(error => console.error('Error al cargar el archivo JSON:', error));
-    };
-    const ordenarProductos = () => {
-        const selector = document.getElementById('ordenar');
-        const criterio = selector.value;
+                productosDiv.appendChild(productoDiv);
+            });
+        })
+        .catch(error => console.error('Error al cargar el archivo JSON:', error));
 
-        switch (criterio) {
+    const ordenarSelect = document.getElementById('ordenar');
+
+    ordenarSelect.addEventListener('change', () => {
+        const valorSeleccionado = ordenarSelect.value;
+
+        switch (valorSeleccionado) {
             case 'precio_asc':
-                productosSol.sort((a, b) => a.precio - b.precio);
+                productosOftalmicos.sort((a, b) => a.precio - b.precio);
                 break;
             case 'precio_desc':
-                productosSol.sort((a, b) => b.precio - a.precio);
+                productosOftalmicos.sort((a, b) => b.precio - a.precio);
                 break;
             case 'nombre_asc':
-                productosSol.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                productosOftalmicos.sort((a, b) => a.nombre.localeCompare(b.nombre));
                 break;
             case 'nombre_desc':
-                productosSol.sort((a, b) => b.nombre.localeCompare(a.nombre));
+                productosOftalmicos.sort((a, b) => b.nombre.localeCompare(a.nombre));
                 break;
             default:
+                renderizarProductos(productosOftalmicos);
                 break;
         }
 
-        renderizarProductos(productosSol);
-    };
+        // Vuelve a renderizar los productos ordenados
+        renderizarProductos(productosOftalmicos);
+    });
 
-    // Función para renderizar los productos
     const renderizarProductos = (productos) => {
         const productosDiv = document.getElementById('productos');
         productosDiv.innerHTML = '';
@@ -90,13 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
             productosDiv.appendChild(productoDiv);
         });
     };
-
-    // Event listener para el cambio en el selector de orden
-    const selectorOrden = document.getElementById('ordenar');
-    selectorOrden.addEventListener('change', ordenarProductos);
-
-    // Cargar los productos al inicio
-    cargarProductos();
 
     const nav = document.querySelector("#nav");
     const abrir = document.querySelector("#abrir");

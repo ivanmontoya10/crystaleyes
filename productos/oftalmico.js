@@ -12,24 +12,23 @@ const verDetalle = (productoId) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cargarProductos = () => {
-        fetch('http://localhost/crystaleyes/jsons/productos.json', {
-            method: 'GET',
-            credentials: 'include'
-        })
-            .then(response => response.json())
-            .then(data => {
-                productos = data;
+    fetch('http://localhost/crystaleyes/jsons/productos.json', {
+        method: 'GET',
+        credentials: 'include'
+    })
+        .then(response => response.json())
+        .then(data => {
+            productos = data;
 
-                productosOftalmicos = data.filter(producto => producto.categoria === "Oftálmico");
+            productosOftalmicos = data.filter(producto => producto.categoria === "Oftálmico");
 
-                const productosDiv = document.getElementById('productos');
-                productosDiv.innerHTML = '';
+            const productosDiv = document.getElementById('productos');
+            productosDiv.innerHTML = '';
 
-                productosOftalmicos.forEach(producto => {
-                    const productoDiv = document.createElement('div');
-                    productoDiv.classList.add('producto-card');
-                    productoDiv.innerHTML = `
+            productosOftalmicos.forEach(producto => {
+                const productoDiv = document.createElement('div');
+                productoDiv.classList.add('producto-card');
+                productoDiv.innerHTML = `
                     <div>
                         <img src="${producto.img1}">
                         <h2>${producto.nombre}</h2>
@@ -39,17 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
-                    productosDiv.appendChild(productoDiv);
-                });
-            })
-            .catch(error => console.error('Error al cargar el archivo JSON:', error));
-    };
+                productosDiv.appendChild(productoDiv);
+            });
+        })
+        .catch(error => console.error('Error al cargar el archivo JSON:', error));
 
-    const ordenarProductos = () => {
-        const selector = document.getElementById('ordenar');
-        const criterio = selector.value;
+    const ordenarSelect = document.getElementById('ordenar');
 
-        switch (criterio) {
+    ordenarSelect.addEventListener('change', () => {
+        const valorSeleccionado = ordenarSelect.value;
+
+        switch (valorSeleccionado) {
             case 'precio_asc':
                 productosOftalmicos.sort((a, b) => a.precio - b.precio);
                 break;
@@ -63,13 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 productosOftalmicos.sort((a, b) => b.nombre.localeCompare(a.nombre));
                 break;
             default:
+                renderizarProductos(productosOftalmicos);
                 break;
         }
 
+        // Vuelve a renderizar los productos ordenados
         renderizarProductos(productosOftalmicos);
-    };
+    });
 
-    // Función para renderizar los productos
     const renderizarProductos = (productos) => {
         const productosDiv = document.getElementById('productos');
         productosDiv.innerHTML = '';
@@ -78,25 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const productoDiv = document.createElement('div');
             productoDiv.classList.add('producto-card');
             productoDiv.innerHTML = `
-            <div>
-                <img src="${producto.img1}">
-                <h2>${producto.nombre}</h2>
-                <p class="precio">$${producto.precio}</p>
-                <p>${producto.descripcion_larga}</p>
-                <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-            </div>
+                <div>
+                    <img src="${producto.img1}">
+                    <h2>${producto.nombre}</h2>
+                    <p class="precio">$${producto.precio}</p>
+                    <p>${producto.descripcion_larga}</p>
+                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                </div>
             `;
 
             productosDiv.appendChild(productoDiv);
         });
     };
-
-    // Event listener para el cambio en el selector de orden
-    const selectorOrden = document.getElementById('ordenar');
-    selectorOrden.addEventListener('change', ordenarProductos);
-
-    // Cargar los productos al inicio
-    cargarProductos();
 
     const nav = document.querySelector("#nav");
     const abrir = document.querySelector("#abrir");

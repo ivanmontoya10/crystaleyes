@@ -6,118 +6,34 @@ cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
 });
 
-let productosCargados = false; // Variable para verificar si los productos ya se cargaron
-document.addEventListener("DOMContentLoaded", () => {
-    // Verificar si los productos ya se cargaron antes
-    if (!productosCargados) {
-        // Obtener el parámetro de búsqueda de la URL
-        const params = new URLSearchParams(window.location.search);
-        const query = params.get('query');
+document.addEventListener('DOMContentLoaded', function () {
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const productosContainer = document.getElementById('productos');
 
-        // Si hay una consulta de búsqueda, resaltar o mostrar primero el producto que coincide
-        if (query) {
-            fetch('/crystaleyes/jsons/productos.json')
-                .then(response => response.json())
-                .then(data => {
-                    const productosCoincidentes = data.filter(producto => {
-                        const nombreProducto = producto.nombre.toLowerCase().trim();
-                        const queryLowerCase = query.toLowerCase().trim();
-                        return nombreProducto.includes(queryLowerCase);
-                    });
-                    // Si se encontraron productos coincidentes
-                    if (productosCoincidentes.length > 0) {
-                        // Renderizamos los productos coincidentes
-                        renderizarProductos(productosCoincidentes);
-                    } else {
-                        // Si no se encontraron productos, mostrar un mensaje de alerta
-                        alert("No se encontraron productos que coincidan con la búsqueda.");
-                    }
-                })
-                .catch(error => console.error('Error al procesar los datos JSON:', error));
-        } else {
-            // Si no hay consulta de búsqueda, simplemente cargar todos los productos
-            cargarProductos();
-        }
-        productosCargados = true; // Marcar que los productos han sido cargados
-    }
-    // Event listener para el cambio en el selector de orden
-    const selectorOrden = document.getElementById('ordenar');
-    selectorOrden.addEventListener('change', () => {
-        renderizarProductos(productos); // Llama a la función renderizarProductos con los productos actuales
+    searchForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita que el formulario se envíe por defecto
+
+        const query = searchInput.value.trim(); // Obtiene el valor del campo de búsqueda
+
+        // Realiza una solicitud GET para obtener los resultados de búsqueda
+        fetch('http://localhost/crystaleyes/jsons/productos.json')
+            .then(response => response.json())
+            .then(data => {
+
+                const resultados = data.filter(producto => producto.nombre.toLowerCase().includes(query.toLowerCase()));
+                // Borra el contenido anterior en el contenedor de productos
+                productosContainer.innerHTML = '';
+
+                // Agrega los resultados de búsqueda al contenedor de productos
+                data.forEach(producto => {
+                    const productoElement = document.createElement('div');
+                    productoElement.textContent = producto.nombre; // Ejemplo: Mostrar el nombre del producto
+                    productosContainer.appendChild(productoElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener resultados de búsqueda:', error);
+            });
     });
 });
-
-// Función para cargar todos los productos
-const cargarProductos = () => {
-    fetch('http://localhost/crystaleyes/jsons/productos.json', {
-        method: 'GET',
-        credentials: 'include'
-    })
-        .then(response => response.json())
-        .then(data => {
-            renderizarProductos(data);
-        })
-        .catch(error => console.error('Error al cargar el archivo JSON:', error));
-};
-
-// Función para renderizar y ordenar los productos
-const renderizarProductos = (productos) => {
-    // Obtener el criterio de orden seleccionado
-    const criterio = document.getElementById('ordenar').value;
-
-    // Obtener el parámetro de búsqueda de la URL
-    const params = new URLSearchParams(window.location.search);
-    const query = params.get('query');
-
-    // Filtrar los productos según la búsqueda si existe
-    let productosFiltrados = productos;
-    if (query) {
-        productosFiltrados = productos.filter(producto => {
-            const nombreProducto = producto.nombre.toLowerCase().trim();
-            const queryLowerCase = query.toLowerCase().trim();
-            return nombreProducto.includes(queryLowerCase);
-        });
-    }
-
-    // Aplicar el filtro según el criterio seleccionado
-    switch (criterio) {
-        case 'precio_asc':
-            productosFiltrados.sort((a, b) => a.precio - b.precio);
-            break;
-        case 'precio_desc':
-            productosFiltrados.sort((a, b) => b.precio - a.precio);
-            break;
-        case 'nombre_asc':
-            productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
-            break;
-        case 'nombre_desc':
-            productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre));
-            break;
-        default:
-            break;
-    }
-
-    const productosDiv = document.getElementById('productos');
-    productosDiv.innerHTML = '';
-
-    productosFiltrados.forEach(producto => {
-        const productoDiv = crearCardProducto(producto);
-        productosDiv.appendChild(productoDiv);
-    });
-};
-
-// Función para crear una tarjeta de producto
-const crearCardProducto = (producto) => {
-    const productoDiv = document.createElement('div');
-    productoDiv.classList.add('producto-card');
-    productoDiv.innerHTML = `
-        <div>
-            <img src="${producto.img1}">
-            <h2>${producto.nombre}</h2>
-            <p class="precio">$${producto.precio}</p>
-            <p>${producto.descripcion_larga}</p>
-            <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-        </div>
-    `;
-    return productoDiv;
-};
