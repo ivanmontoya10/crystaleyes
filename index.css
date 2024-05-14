@@ -11,6 +11,7 @@ header {
   justify-content: space-between;
   padding: 1rem;
   background-color: #fff;
+  border-bottom: 1px gainsboro solid;
 }
 
 .logo {
@@ -764,7 +765,7 @@ footer {
 .msj-act {
   display: block;
   text-align: center;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid gainsboro;
 }
 
 .fondoshop {
@@ -868,4 +869,31 @@ footer {
   padding: 15px 15px;
   border-radius: 10px;
   font-size: 25px;
+  cursor: pointer; /* Cambia el cursor al hacer clic */
+}
+
+.chat-panel {
+  margin-top: 10px; /* Espacio entre el chat y el panel */
+  font-size: 18px;
+}
+
+.chat-panel input {
+  display: block;
+  margin-bottom: 10px;
+  /* Estilos para los inputs en el panel */
+}
+
+.btn-chat{
+  background-color: white;
+  padding: 5px 5px;
+  border-radius: 9px;
+  color: black;
+  border: 1px black solid;
+}
+
+.btn-chat:hover{
+  background-color: black;
+  color: white;
+  transition: all 0.3s;
+  border: 1px white solid;
 }

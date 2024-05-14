@@ -80,10 +80,42 @@
         </div>
     </div>
 
-    <div class="esquina-inferior">
+    <!-- <div class="esquina-inferior">
         💬Chat
+    </div> -->
+
+    <div class="esquina-inferior" onclick="toggleChatPanel(event)">
+        💬Chat
+        <div class="chat-panel" style="display: none;">
+            <input type="text" placeholder="Nombre">
+            <input type="email" placeholder="Correo electrónico">
+            <input type="text" placeholder="Mensaje">
+            <center><button class="btn-chat">Enviar</button></center>
+        </div>
     </div>
 
+    <script>
+        function toggleChatPanel(event) {
+            const chatPanel = event.currentTarget.querySelector('.chat-panel');
+            chatPanel.style.display = chatPanel.style.display === 'none' ? 'block' : 'none';
+            event.stopPropagation(); // Evita que el clic se propague a elementos superiores
+        }
+
+        // Cierra el panel si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            const chatPanel = document.querySelector('.chat-panel');
+            if (chatPanel && !chatPanel.contains(event.target)) {
+                chatPanel.style.display = 'none';
+            }
+        });
+
+        // Detiene la propagación del clic en los inputs del panel
+        document.querySelector('.chat-panel').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+
+    </script>
 
     <div style="margin-bottom: 60px;"></div>
 
