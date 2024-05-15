@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="producto.css">
     <title>Lente Oftálmico Gucci GG0027O Havana</title>
 </head>
+<div class="msj-act">Bienvenido a nuestra tienda</div>
 <header>
     <img class="logo" src="/crystaleyes/imgs/logo.png" alt="Logo">
     <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
@@ -34,8 +35,10 @@
                     <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div>
-            <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart" style="font-size: 24px"></i></a></li>
+            <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square"
+                        style="font-size: 24px"></i></a></li>
+            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart"
+                        style="font-size: 24px"></i></a></li>
             <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-cart3" style="font-size: 24px"></i></a></li>
             <li><a href="/crystaleyes/loginregister/login.html"><button class="icon-button login-button"><i
                             class="bi bi-person-fill"></i><span class="login-text">Iniciar
@@ -161,6 +164,37 @@
         function agregarAListaDeseos() {
             window.location.href = "/crystaleyes/listadeseos/listadeseos.html";
         }
+    </script>
+
+    <div class="esquina-inferior" onclick="toggleChatPanel(event)">
+        💬Chat
+        <div class="chat-panel" style="display: none;">
+            <input type="text" placeholder="Nombre">
+            <input type="email" placeholder="Correo electrónico">
+            <input type="text" placeholder="Mensaje">
+            <center><button class="btn-chat">Enviar</button></center>
+        </div>
+    </div>
+
+    <script>
+        function toggleChatPanel(event) {
+            const chatPanel = event.currentTarget.querySelector('.chat-panel');
+            chatPanel.style.display = chatPanel.style.display === 'none' ? 'block' : 'none';
+            event.stopPropagation(); // Evita que el clic se propague a elementos superiores
+        }
+
+        // Cierra el panel si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            const chatPanel = document.querySelector('.chat-panel');
+            if (chatPanel && !chatPanel.contains(event.target)) {
+                chatPanel.style.display = 'none';
+            }
+        });
+
+        // Detiene la propagación del clic en los inputs del panel
+        document.querySelector('.chat-panel').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
     </script>
 
     <script src="../script.js"></script>

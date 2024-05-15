@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="${producto.img1}">
                         <h2>${producto.nombre}</h2>
                         <p class="precio">$${producto.precio}</p>
-                        <p>${producto.descripcion_larga}</p>
                         <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
                     </div>
                 `;
@@ -82,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${producto.img1}">
                     <h2>${producto.nombre}</h2>
                     <p class="precio">$${producto.precio}</p>
-                    <p>${producto.descripcion_larga}</p>
                     <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
                 </div>
             `;
