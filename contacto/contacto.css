@@ -19,7 +19,7 @@
     margin-top: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
-    max-height: 250px; /* Altura máxima para cada FAQ */
+    max-height: 285px; /* Altura máxima para cada FAQ */
     overflow-y: auto; /* Desplazamiento vertical para contenido que excede la altura máxima */
 }
 
