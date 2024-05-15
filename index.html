@@ -84,7 +84,7 @@
         💬Chat
     </div> -->
 
-    <div class="esquina-inferior" onclick="toggleChatPanel(event)">
+    <div class="esquina-inferior" onclick="toggleChatPanel(event)"> 
         💬Chat
         <div class="chat-panel" style="display: none;">
             <input type="text" placeholder="Nombre">
@@ -113,9 +113,17 @@
         document.querySelector('.chat-panel').addEventListener('click', function (event) {
             event.stopPropagation();
         });
-
-
     </script>
+
+    <!-- <script>
+        $(document).ready(function () {
+            $('#exampleModalLong').modal('show');
+
+            $('#aceptarBtn').click(function () {
+                $('#exampleModalLong').modal('hide');
+            });
+        });
+    </script> -->
 
     <div style="margin-bottom: 60px;"></div>
 
