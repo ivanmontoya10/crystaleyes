@@ -52,13 +52,14 @@
  <!--Aqui va contenido-->
  <div class="registro-wrapper">
     <div class="registro-container">
-        <h2>Crear cuenta</h2>
+        <h1>Crear cuenta</h1>
         <form id="registroForm" action="register.php" method="POST">
             <input type="text" name="username" placeholder="Nombre de usuario" required>
+            <input type="text" name="apellido" placeholder="Apellido" required>
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
-            <input type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
-            <button type="submit">Crear</button>
+            <div style="padding-bottom: 15px;"></div>
+            <center><button type="submit">Crear</button></center>
         </form>
     </div>
 </div>
