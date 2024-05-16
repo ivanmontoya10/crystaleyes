@@ -86,11 +86,8 @@
         </div>
     </div>
 
-    <!-- <div class="esquina-inferior">
-        💬Chat
-    </div> -->
-
     <div class="esquina-inferior" onclick="toggleChatPanel(event)">
+
         💬Chat
         <div class="chat-panel" style="display: none;">
             <input type="text" placeholder="Nombre">
@@ -100,9 +97,35 @@
         </div>
     </div>
 
+    <script>
+        function toggleChatPanel(event) {
+            const chatPanel = event.currentTarget.querySelector('.chat-panel');
+            chatPanel.style.display = chatPanel.style.display === 'none' ? 'block' : 'none';
+            event.stopPropagation(); // Evita que el clic se propague a elementos superiores onclick="m()" + func al
+        }
+
+        // function closeChatPanel(event) {
+        //     const chatPanel = event.currentTarget.parentElement;
+        //     chatPanel.style.display = 'none';
+        //     event.stopPropagation();
+        // }
+
+        // Cierra el panel si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            const chatPanel = document.querySelector('.chat-panel');
+            if (chatPanel && !chatPanel.contains(event.target)) {
+                chatPanel.style.display = 'none';
+            }
+        });
+
+        // Detiene la propagación del clic en los inputs del panel Button onclick
+        document.querySelector('.chat-panel').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    </script>
     
 
-    <!-- <script>
+    <script>
         $(document).ready(function () {
             $('#exampleModalLong').modal('show');
 
@@ -110,7 +133,7 @@
                 $('#exampleModalLong').modal('hide');
             });
         });
-    </script> -->
+    </script>
 
     <div style="margin-bottom: 60px;"></div>
 
