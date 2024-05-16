@@ -4,7 +4,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     margin-bottom: 20px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #F2F3F4;
+
+    font-family: Arial, sans-serif; /* Cambia el estilo de la fuente */
+    font-size: 16px; /* Cambia el tamaño de la letra */
 }
 
 .product-card h3 {
@@ -59,3 +62,24 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+#addProductButton {
+    background-color: #D4E6F1; /* Color de fondo */
+    color: black; /* Color del texto */
+    padding: 10px 20px; /* Aumenta el espacio alrededor del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Añade esquinas redondeadas */
+    cursor: pointer;
+    font-size: 16px; /* Tamaño de la letra */
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+#addProductButton:hover {
+    background-color: #BFC9CA; /* Cambia el color de fondo al pasar el cursor */
+}
+
+#products-container {
+    margin-top: 20px; /* Ajusta el tamaño del espacio según sea necesario */
+}
+
+

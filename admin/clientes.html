@@ -83,7 +83,7 @@
                     // Generar el HTML para cada producto
                     clients.forEach(client => {
                         const productCard = document.createElement('div');
-                        productCard.classList.add('product-card');
+                        productCard.classList.add('client-card'); // Esta es la línea añadida
                         productCard.dataset.productId = client.id;
 
                         const productName = document.createElement('h3');
@@ -157,7 +157,7 @@
                 };
 
                 const productCard = document.createElement('div');
-                productCard.classList.add('product-card');
+                productCard.classList.add('client-card'); // Esta es la línea añadida
                 productCard.dataset.productId = newProduct.id;
 
                 const productName = document.createElement('h3');
