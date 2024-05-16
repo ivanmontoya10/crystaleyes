@@ -23,84 +23,92 @@
     <nav class="nav" id="nav">
         <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
         <ul class="nav-list">
-            <li><a href="/crystaleyes/index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="#">Productos</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
-                    <li><a href="/crystaleyes/productos/oftalmico.html">Lentes oftálmicos</a></li>
-                    <li><a href="/crystaleyes/productos/lentescontacto.html">Lentes de contacto</a></li>
-                    <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
-                </ul>
-            </li>
-            <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
-            <div class="search-form-container">
-                <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
-                    <input type="text" name="query" placeholder="Buscar...">
-                    <button type="submit"><i class="bi bi-search"></i></button>
-                </form>
+            <div class="menu-left">
+                <li><a href="/crystaleyes/index.html">Hogar</a></li>
+                <li class="dropdown">
+                    <a href="#">Catálogo de Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
+                        <li><a href="/crystaleyes/productos/oftalmico.html">Lentes oftálmicos</a></li>
+                        <li><a href="/crystaleyes/productos/lentescontacto.html">Lentes de contacto</a></li>
+                        <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
+                    </ul>
+                </li>
+                <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
             </div>
-            <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-cart3" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/loginregister/login.html"><button class="icon-button login-button"><i
-                            class="bi bi-person-fill"></i><span class="login-text">Iniciar
-                            sesión</span></button></a></li>
-            <li><a href="/crystaleyes/loginregister/register.html"><button class="icon-button register-button"><i
-                            class="bi bi-person-plus-fill"></i><span
-                            class="register-text">Registrarse</span></button></a></li>
+            <div class="menu-right">
+                <div class="search-form-container">
+                    <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
+                        <div class="show-input">
+                            <input id="search-input" type="text" name="query" placeholder="Buscar...">
+                        </div>
+                        <button id="search-button" type="submit"><i class="bi bi-search" style="font-size: 20px"></i></button>
+                    </form>
+                </div>
+            </div>
+            <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-heart"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/loginregister/login.html"><i class="bi bi-person" 
+                style="font-size: 20px"></i></a>
+            </li>
+            <li><a href="/crystaleyes/loginregister/register.html"><i class="bi bi-person-plus"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-bag" 
+                style="font-size: 20px"></i></a></li>
         </ul>
     </nav>
 </header>
 
 <body>
-    
+
     <h1 class="lista-deseos">Lista de deseos</h1>
 
     <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4" id="wishlist-container">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="wishlist-container">
 
+        </div>
     </div>
-</div>
 
     <script>
         let listaDeseos = [];
-        
+
         function cargarProductosDesdeLocalStorage() {
             const storedListaDeseos = localStorage.getItem('listaDeseos');
 
-    if (storedListaDeseos) {
-        
-        listaDeseos = JSON.parse(storedListaDeseos);
-        mostrarListaDeseos();
-    }
-}
-    function cargarProductosDesdeJSON() {
-    fetch('http://localhost/crystaleyes/jsons/deseos.json')
-        .then(response => response.json())
-        .then(data => {
-            
-            listaDeseos = [...listaDeseos, ...data];
-            mostrarListaDeseos();
-        })
-        .catch(error => console.error('Error al cargar productos:', error));
-    }
-    
-    
-    function mostrarListaDeseos() {
-    const container = document.getElementById('wishlist-container');
-    if (!container) {
-        console.error("El contenedor de la lista de deseos no existe.");
-        return;
-    }
-    container.innerHTML = '';
+            if (storedListaDeseos) {
 
-    
+                listaDeseos = JSON.parse(storedListaDeseos);
+                mostrarListaDeseos();
+            }
+        }
+        function cargarProductosDesdeJSON() {
+            fetch('http://localhost/crystaleyes/jsons/deseos.json')
+                .then(response => response.json())
+                .then(data => {
 
-    listaDeseos.forEach(producto => {
-        const card = document.createElement('div');
-        card.className = 'col';
-        card.innerHTML = `
+                    listaDeseos = [...listaDeseos, ...data];
+                    mostrarListaDeseos();
+                })
+                .catch(error => console.error('Error al cargar productos:', error));
+        }
+
+
+        function mostrarListaDeseos() {
+            const container = document.getElementById('wishlist-container');
+            if (!container) {
+                console.error("El contenedor de la lista de deseos no existe.");
+                return;
+            }
+            container.innerHTML = '';
+
+
+
+            listaDeseos.forEach(producto => {
+                const card = document.createElement('div');
+                card.className = 'col';
+                card.innerHTML = `
             <div class="card h-100">
                 <img src="${producto.img1}" class="card-img-top" alt="${producto.img1}">
                 <div class="card-body">
@@ -117,58 +125,61 @@
                 </div>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
-}
-    function eliminarDeListaDeseos(id) {
-    listaDeseos = listaDeseos.filter(producto => producto.id !== id);
-    localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
-    mostrarListaDeseos();
-}
 
-// Llamar a ambas funciones para cargar productos desde el almacenamiento local y el JSON
-cargarProductosDesdeLocalStorage();
-cargarProductosDesdeJSON();
-
-</script>
-
-<div class="esquina-inferior" onclick="toggleChatPanel(event)"> 
-    💬Chat
-    <div class="chat-panel" style="display: none;">
-        <input type="text" placeholder="Nombre">
-        <input type="email" placeholder="Correo electrónico">
-        <input type="text" placeholder="Mensaje">
-        <center><button class="btn-chat">Enviar</button></center>
-    </div>
-</div>
-
-<script>
-    function toggleChatPanel(event) {
-        const chatPanel = event.currentTarget.querySelector('.chat-panel');
-        chatPanel.style.display = chatPanel.style.display === 'none' ? 'block' : 'none';
-        event.stopPropagation(); // Evita que el clic se propague a elementos superiores
-    }
-
-    // Cierra el panel si se hace clic fuera de él
-    document.addEventListener('click', function (event) {
-        const chatPanel = document.querySelector('.chat-panel');
-        if (chatPanel && !chatPanel.contains(event.target)) {
-            chatPanel.style.display = 'none';
+                container.appendChild(card);
+            });
         }
-    });
+        function eliminarDeListaDeseos(id) {
+            listaDeseos = listaDeseos.filter(producto => producto.id !== id);
+            localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
+            mostrarListaDeseos();
+        }
 
-    // Detiene la propagación del clic en los inputs del panel
-    document.querySelector('.chat-panel').addEventListener('click', function (event) {
-        event.stopPropagation();
-    });
-</script>
+        // Llamar a ambas funciones para cargar productos desde el almacenamiento local y el JSON
+        cargarProductosDesdeLocalStorage();
+        cargarProductosDesdeJSON();
+
+    </script>
+
+    <div class="esquina-inferior" onclick="toggleChatPanel(event)">
+        💬Chat
+        <div class="chat-panel" style="display: none;">
+            <input type="text" placeholder="Nombre">
+            <input type="email" placeholder="Correo electrónico">
+            <input type="text" placeholder="Mensaje">
+            <center><button class="btn-chat">Enviar</button></center>
+        </div>
+    </div>
+
+    <script>
+        function toggleChatPanel(event) {
+            const chatPanel = event.currentTarget.querySelector('.chat-panel');
+            chatPanel.style.display = chatPanel.style.display === 'none' ? 'block' : 'none';
+            event.stopPropagation(); // Evita que el clic se propague a elementos superiores
+        }
+
+        // Cierra el panel si se hace clic fuera de él
+        document.addEventListener('click', function (event) {
+            const chatPanel = document.querySelector('.chat-panel');
+            if (chatPanel && !chatPanel.contains(event.target)) {
+                chatPanel.style.display = 'none';
+            }
+        });
+
+        // Detiene la propagación del clic en los inputs del panel
+        document.querySelector('.chat-panel').addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    </script>
+    <script src="../buscar.js"></script>
 </body>
 
 <footer>
     <div class="acerca-de">
         <h3>Acerca de nosotros</h3>
-        <p>Somos Crystal Eyes, una empresa apasionada por la visión y el estilo. En Crystal Eyes, entendemos la importancia de unos buenos lentes no solo para corregir la visión, sino también para realzar tu estilo único.</p>
+        <p>Somos Crystal Eyes, una empresa apasionada por la visión y el estilo. En Crystal Eyes, entendemos la
+            importancia de unos buenos lentes no solo para corregir la visión, sino también para realzar tu estilo
+            único.</p>
     </div>
     <div class="redes-sociales">
         <i class='bx bxl-facebook'></i>

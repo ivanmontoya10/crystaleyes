@@ -1,6 +1,14 @@
-let productos = [];
+let productosCargados = false; // Variable para verificar si los productos ya se cargaron
 
-// Función para cargar y mostrar los productos
+document.addEventListener("DOMContentLoaded", () => {
+    // Verificar si los productos ya se cargaron antes
+    if (!productosCargados) {
+        cargarProductos();
+        productosCargados = true; // Marcar que los productos han sido cargados
+    }
+});
+
+// Función para cargar todos los productos
 const cargarProductos = () => {
     fetch('http://localhost/crystaleyes/jsons/productos.json', {
         method: 'GET',
@@ -9,24 +17,28 @@ const cargarProductos = () => {
     .then(response => response.json())
     .then(data => {
         productos = data;
-        renderizarProductos();
+        renderizarProductos(data);
     })
     .catch(error => console.error('Error al cargar el archivo JSON:', error));
 };
-
-// Función para renderizar y filtrar los productos
-const renderizarProductos = () => {
+// Variable para almacenar los productos filtrados
+let productosFiltrados = [];
+// Función para renderizar y ordenar los productos
+const renderizarProductos = (productos) => {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
     const categoria = obtenerCategoriaActual();
 
+    // Limpiar productos filtrados
+    productosFiltrados = [];
+
     // Filtrar productos según la búsqueda
-    let productosFiltrados = [];
     if (query) {
-        const queryLowerCase = query.toLowerCase().trim();
-        productosFiltrados = productos.filter(producto => 
-            producto.nombre.toLowerCase().includes(queryLowerCase)
-        );
+        productosFiltrados = productos.filter(producto => {
+            const nombreProducto = producto.nombre.toLowerCase().trim();
+            const queryLowerCase = query.toLowerCase().trim();
+            return nombreProducto.includes(queryLowerCase);
+        });
     } else {
         // Si no hay consulta de búsqueda, mostrar todos los productos
         productosFiltrados = productos.slice();
@@ -40,11 +52,13 @@ const renderizarProductos = () => {
     // Renderizar productos
     const productosDiv = document.getElementById('productos');
     productosDiv.innerHTML = '';
+
     productosFiltrados.forEach(producto => {
         const productoDiv = crearCardProducto(producto);
         productosDiv.appendChild(productoDiv);
     });
 };
+
 
 // Función para obtener la categoría actual
 const obtenerCategoriaActual = () => {
@@ -83,29 +97,28 @@ const ordenarProductos = () => {
 
     switch (criterio) {
         case 'precio_asc':
-            productos.sort((a, b) => a.precio - b.precio);
+            productosFiltrados.sort((a, b) => a.precio - b.precio);
             break;
         case 'precio_desc':
-            productos.sort((a, b) => b.precio - a.precio);
+            productosFiltrados.sort((a, b) => b.precio - a.precio);
             break;
         case 'nombre_asc':
-            productos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
             break;
         case 'nombre_desc':
-            productos.sort((a, b) => b.nombre.localeCompare(a.nombre));
+            productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre));
             break;
         default:
             break;
     }
 
     // Limpia y vuelve a renderizar los productos
-    renderizarProductos();
+    renderizarProductos(productosFiltrados);
 };
 
 // Event listener para el cambio en el selector de orden
 const selectorOrden = document.getElementById('ordenar');
 selectorOrden.addEventListener('change', ordenarProductos);
 
-// Cargar los productos al inicio
+// Iniciar la carga de productos al cargar la página
 cargarProductos();
-

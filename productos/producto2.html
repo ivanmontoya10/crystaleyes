@@ -19,34 +19,40 @@
     <nav class="nav" id="nav">
         <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
         <ul class="nav-list">
-            <li><a href="/crystaleyes/index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="#">Productos</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
-                    <li><a href="/crystaleyes/productos/oftalmico.html">Lentes oftálmicos</a></li>
-                    <li><a href="/crystaleyes/productos/lentescontacto.html">Lentes de contacto</a></li>
-                    <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
-                </ul>
-            </li>
-            <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
-            <div class="search-form-container">
-                <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
-                    <input type="text" name="query" placeholder="Buscar...">
-                    <button type="submit"><i class="bi bi-search"></i></button>
-                </form>
+            <div class="menu-left">
+                <li><a href="/crystaleyes/index.html">Hogar</a></li>
+                <li class="dropdown">
+                    <a href="#">Catálogo de Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
+                        <li><a href="/crystaleyes/productos/oftalmico.html">Lentes oftálmicos</a></li>
+                        <li><a href="/crystaleyes/productos/lentescontacto.html">Lentes de contacto</a></li>
+                        <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
+                    </ul>
+                </li>
+                <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
+            </div>
+            <div class="menu-right">
+                <div class="search-form-container">
+                    <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
+                        <div class="show-input">
+                            <input id="search-input" type="text" name="query" placeholder="Buscar...">
+                        </div>
+                        <button id="search-button" type="submit"><i class="bi bi-search" style="font-size: 20px"></i></button>
+                    </form>
+                </div>
             </div>
             <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square"
-                        style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart"
-                        style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-cart3" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/loginregister/login.html"><button class="icon-button login-button"><i
-                            class="bi bi-person-fill"></i><span class="login-text">Iniciar
-                            sesión</span></button></a></li>
-            <li><a href="/crystaleyes/loginregister/register.html"><button class="icon-button register-button"><i
-                            class="bi bi-person-plus-fill"></i><span
-                            class="register-text">Registrarse</span></button></a></li>
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-heart"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/loginregister/login.html"><i class="bi bi-person" 
+                style="font-size: 20px"></i></a>
+            </li>
+            <li><a href="/crystaleyes/loginregister/register.html"><i class="bi bi-person-plus"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-bag" 
+                style="font-size: 20px"></i></a></li>
         </ul>
     </nav>
 </header>
@@ -223,20 +229,20 @@
                 <label for="comentario">Comentario:</label>
                 <textarea id="comentario" name="comentario" required></textarea>
             </div>
-    
+
             <button type="submit">Agregar Comentario</button>
         </form>
     </section>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             mostrarComentarios();
         });
-    
+
         const stars = document.querySelectorAll('.star');
-    
-        stars.forEach(function(star, index) {
-            star.addEventListener('click', function() {
+
+        stars.forEach(function (star, index) {
+            star.addEventListener('click', function () {
                 for (let i = 0; i <= index; i++) {
                     stars[i].classList.add('checked');
                 }
@@ -245,57 +251,57 @@
                 }
             });
         });
-    
-        document.getElementById("formulario-comentario").addEventListener("submit", function(event) {
-    event.preventDefault();
 
-    var usuario = document.getElementById("nombre").value;
-    var comentario = document.getElementById("comentario").value;
-    var valoracion = document.querySelector('.star.checked').getAttribute('data-value');
+        document.getElementById("formulario-comentario").addEventListener("submit", function (event) {
+            event.preventDefault();
 
-    var nuevoComentario = {
-        usuario: usuario,
-        comentario: comentario,
-        valoracion: valoracion
-    };
+            var usuario = document.getElementById("nombre").value;
+            var comentario = document.getElementById("comentario").value;
+            var valoracion = document.querySelector('.star.checked').getAttribute('data-value');
 
-    // Guardar en sessionStorage
-    var reseñasGuardadas = sessionStorage.getItem("reseñas");
-    var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
+            var nuevoComentario = {
+                usuario: usuario,
+                comentario: comentario,
+                valoracion: valoracion
+            };
 
-    reseñas.push(nuevoComentario);
+            // Guardar en sessionStorage
+            var reseñasGuardadas = sessionStorage.getItem("reseñas");
+            var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
 
-    sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
+            reseñas.push(nuevoComentario);
 
-    // Configurar el estado de las estrellas
-    mostrarComentarios();
+            sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
 
-    // Guardar en localStorage (JSON)
-    var comentariosGuardados = localStorage.getItem("comentarios");
-    var comentarios = comentariosGuardados ? JSON.parse(comentariosGuardados) : [];
+            // Configurar el estado de las estrellas
+            mostrarComentarios();
 
-    comentarios.push(nuevoComentario);
+            // Guardar en localStorage (JSON)
+            var comentariosGuardados = localStorage.getItem("comentarios");
+            var comentarios = comentariosGuardados ? JSON.parse(comentariosGuardados) : [];
 
-    localStorage.setItem("comentarios", JSON.stringify(comentarios));
+            comentarios.push(nuevoComentario);
 
-    document.getElementById("nombre").value = "";
-    document.getElementById("comentario").value = "";
-});
-    
+            localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+            document.getElementById("nombre").value = "";
+            document.getElementById("comentario").value = "";
+        });
+
         function mostrarComentarios() {
-    var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
-    var listaComentarios = document.getElementById("lista-comentarios");
+            var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
+            var listaComentarios = document.getElementById("lista-comentarios");
 
-    listaComentarios.innerHTML = "";
+            listaComentarios.innerHTML = "";
 
-    // Mostrar comentarios desde sessionStorage
-    var reseñasGuardadas = sessionStorage.getItem("reseñas");
+            // Mostrar comentarios desde sessionStorage
+            var reseñasGuardadas = sessionStorage.getItem("reseñas");
 
-    if (reseñasGuardadas) {
-        var reseñas = JSON.parse(reseñasGuardadas);
+            if (reseñasGuardadas) {
+                var reseñas = JSON.parse(reseñasGuardadas);
 
-        reseñas.forEach(function(reseña) {
-            var comentarioHTML = `
+                reseñas.forEach(function (reseña) {
+                    var comentarioHTML = `
                 <div class="comentario">
                     <div style="display: flex; align-items: center;">
                         <img src="${rutaImagenPerfil}" class="foto-perfil" style="width: 60px; height: 60px; margin-right: 10px;">
@@ -308,43 +314,43 @@
                         <p>${reseña.comentario}</p>
                     </div>
                 </div>`;
-            listaComentarios.innerHTML += comentarioHTML;
-        });
+                    listaComentarios.innerHTML += comentarioHTML;
+                });
 
-        // Configurar el estado de las estrellas
-        var comentarios = document.querySelectorAll('.comentario');
-        comentarios.forEach(function(comentario, index) {
-            var stars = comentario.querySelectorAll('.star');
-            stars.forEach(function(star, starIndex) {
-                if (starIndex < reseñas[index].valoracion) {
-                    star.classList.add('checked');
-                } else {
-                    star.classList.remove('checked');
-                }
-            });
-        });
-    }
+                // Configurar el estado de las estrellas
+                var comentarios = document.querySelectorAll('.comentario');
+                comentarios.forEach(function (comentario, index) {
+                    var stars = comentario.querySelectorAll('.star');
+                    stars.forEach(function (star, starIndex) {
+                        if (starIndex < reseñas[index].valoracion) {
+                            star.classList.add('checked');
+                        } else {
+                            star.classList.remove('checked');
+                        }
+                    });
+                });
+            }
 
-    // Mostrar comentarios desde localStorage (JSON)
-    cargarComentariosDesdeJSON();
-}
+            // Mostrar comentarios desde localStorage (JSON)
+            cargarComentariosDesdeJSON();
+        }
 
-    
+
         function cargarComentariosDesdeJSON() {
             fetch('http://localhost/crystaleyes/jsons/reseñas.json')
                 .then(response => response.json())
                 .then(data => {
-                    data.forEach(function(comentario) {
+                    data.forEach(function (comentario) {
                         agregarComentarioDOM(comentario);
                     });
                 })
                 .catch(error => console.error('Error al cargar comentarios:', error));
         }
-    
+
         function agregarComentarioDOM(comentario) {
             var listaComentarios = document.getElementById("lista-comentarios");
             var estrellasHTML = "";
-    
+
             for (var i = 0; i < 5; i++) {
                 if (i < comentario.valoracion) {
                     estrellasHTML += '<i class="bi bi-star-fill star checked"></i>';
@@ -352,7 +358,7 @@
                     estrellasHTML += '<i class="bi bi-star-fill star"></i>';
                 }
             }
-    
+
             var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
             var comentarioHTML = `
                 <div class="comentario">
@@ -369,10 +375,10 @@
                 </div>`;
             listaComentarios.innerHTML += comentarioHTML;
         }
-    
+
         function mostrarEstrellas(valoracion) {
             var estrellasHTML = "";
-    
+
             for (var i = 0; i < 5; i++) {
                 if (i < valoracion) {
                     estrellasHTML += '<i class="bi bi-star-fill star checked"></i>';
@@ -380,17 +386,16 @@
                     estrellasHTML += '<i class="bi bi-star-fill star"></i>';
                 }
             }
-    
+
             return estrellasHTML;
         }
-    
+
         // Limpiar los comentarios al recargar la página
-        window.addEventListener("beforeunload", function() {
+        window.addEventListener("beforeunload", function () {
             sessionStorage.removeItem("reseñas");
         });
     </script>
-
-
+    <script src="../buscar.js"></script>
 </body>
 
 <footer>
