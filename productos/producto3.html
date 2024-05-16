@@ -143,7 +143,8 @@
                             <div class="info-producto">
                                 <h2>${productoId1.nombre}</h2>
                                 <p class="precio">$${productoId1.precio}</p>
-                                <p class="descripcion">${productoId1.descripcion_larga}</p><br>
+                                <p class="descripcion">${productoId1.descripcion_corta}</p><br>
+                                <p class="descripcion">Descripción: ${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
                             </div>
@@ -156,6 +157,7 @@
                         <div id="detalle-producto" class="productoID1">
                             <div class="info-producto">
                                 <p class="precio">$${productoId1.precio}</p>
+                                <p>${productoId1.descripcion_corta}</p><br>
                                 <p>${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
@@ -170,12 +172,12 @@
                             if (!productoExistente) {
 
                                 carrito.push(productoId1);
-                                localStorage.setItem('carrito', JSON.stringify(carrito));
+                                // localStorage.setItem('carrito', JSON.stringify(carrito));
                                 alert('Producto agregado al carrito');
 
                                 this.classList.add('disabled-button');
                             } else {
-                                window.location.href = "/crystaleyes/carrito/carrito.html";
+                                alert('El producto ya ha sido añadido al carrito');
                             }
                         });
 
@@ -187,12 +189,12 @@
                             if (!productoExistente) {
 
                                 listaDeseos.push(productoId1);
-                                localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
+                                // localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
                                 alert('Producto agregado a lista de deseos');
 
                                 this.classList.add('disabled-button');
                             } else {
-                                window.location.href = "/crystaleyes/listadeseos/listadeseos.html";
+                                alert('El producto ya ha sido añadido al carrito');
                             }
                         });
 

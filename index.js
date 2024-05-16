@@ -7,18 +7,18 @@ cerrar.addEventListener("click", () => {
 });
 
 // JavaScript para mostrar el formulario de búsqueda al colocar el mouse sobre el icono
-document.addEventListener('DOMContentLoaded', function () {
-    const searchIcon = document.getElementById('search-icon');
-    const searchFormContainer = document.querySelector('.search-form-container');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const searchIcon = document.getElementById('search-icon');
+//     const searchFormContainer = document.querySelector('.search-form-container');
 
-    searchIcon.addEventListener('mouseenter', function () {
-        searchFormContainer.classList.remove('hidden-search');
-    });
+//     searchIcon.addEventListener('mouseenter', function () {
+//         searchFormContainer.classList.remove('hidden-search');
+//     });
 
-    searchIcon.addEventListener('mouseleave', function () {
-        searchFormContainer.classList.add('hidden-search');
-    });
-});
+//     searchIcon.addEventListener('mouseleave', function () {
+//         searchFormContainer.classList.add('hidden-search');
+//     });
+// });
 
 // document.addEventListener('DOMContentLoaded', function () {
 //     const searchForm = document.getElementById('search-form');
