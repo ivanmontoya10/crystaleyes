@@ -12,7 +12,7 @@
 
 <body>
     <div class="sidenav">
-        <a class="active" href="dashboard.html">Inicio</a>
+        <a class="active" href="dashboard.html">Inicioo</a>
         <a href="ordenes.html">Órdenes</a>
         <a href="productos.html">Productos</a>
         <a href="clientes.html">Clientes</a>
@@ -22,51 +22,200 @@
     <div style="margin-left: 200px; padding: 20px;">
         <div class="container">
             <h2>Productos</h2>
-            <button>Agregar producto (temporal)</button>
+            <button id="addProductButton">Agregar producto (temporal)</button>
             <div id="products-container"></div>
         </div>
     </div>
 
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Producto</h2>
+            <form id="editForm">
+                <label for="productName">Nombre:</label>
+                <input type="text" id="productName" name="productName" required>
+                <label for="productDescription">Descripción:</label>
+                <textarea id="productDescription" name="productDescription" required></textarea>
+                <label for="productPrice">Precio:</label>
+                <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agregar Producto</h2>
+            <form id="addForm">
+                <label for="addProductName">Nombre:</label>
+                <input type="text" id="addProductName" name="addProductName" required>
+                <label for="addProductDescription">Descripción:</label>
+                <textarea id="addProductDescription" name="addProductDescription" required></textarea>
+                <label for="addProductPrice">Precio:</label>
+                <input type="number" id="addProductPrice" name="addProductPrice" step="0.01" required>
+                <button type="submit">Agregar producto</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // Cargar el archivo JSON de productos
-        fetch('/crystaleyes/jsons/productos.json')
-            .then(response => response.json())
-            .then(products => {
-                // Obtener el contenedor de productos
-                const productsContainer = document.getElementById('products-container');
+        document.addEventListener('DOMContentLoaded', () => {
+            const productsContainer = document.getElementById('products-container');
+            const editModal = document.getElementById('editModal');
+            const addModal = document.getElementById('addModal');
+            // const closeModal = document.getElementsByClassName('close')[0];
+            const closeEditModal = editModal.querySelector('.close');
+            const closeAddModal = addModal.querySelector('.close');
+            const editForm = document.getElementById('editForm');
+            const addForm = document.getElementById('addForm');
+            const addProductButton = document.getElementById('addProductButton');
+            let currentProduct = null;
 
-                // Generar el HTML para cada producto
-                products.forEach(product => {
-                    const productCard = document.createElement('div');
-                    productCard.classList.add('product-card');
+            // Cargar el archivo JSON de productos
+            fetch('/crystaleyes/jsons/productos.json')
+                .then(response => response.json())
+                .then(products => {
+                    // Generar el HTML para cada producto
+                    products.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.classList.add('product-card');
+                        productCard.dataset.productId = product.id;
 
-                    const productName = document.createElement('h3');
-                    productName.textContent = product.nombre;
+                        const productName = document.createElement('h3');
+                        productName.textContent = product.nombre;
 
-                    const productInfoList = document.createElement('ul');
-                    const descriptionItem = document.createElement('li');
-                    descriptionItem.textContent = `Descripción: ${product.descripcion_larga}`;
-                    productInfoList.appendChild(descriptionItem);
+                        const productInfoList = document.createElement('ul');
+                        const descriptionItem = document.createElement('li');
+                        descriptionItem.textContent = `Descripción: ${product.descripcion_larga}`;
+                        productInfoList.appendChild(descriptionItem);
 
-                    const priceItem = document.createElement('li');
-                    priceItem.textContent = `Precio: $${product.precio.toFixed(2)}`;
-                    productInfoList.appendChild(priceItem);
+                        const priceItem = document.createElement('li');
+                        priceItem.textContent = `Precio: $${product.precio.toFixed(2)}`;
+                        productInfoList.appendChild(priceItem);
 
-                    const edit = document.createElement('button');
-                    edit.textContent = `Editar producto ${product.id} (temporal)`;
-                    productInfoList.appendChild(edit);
+                        const edit = document.createElement('button');
+                        edit.textContent = `Editar producto ${product.id} (temporal)`;
+                        edit.addEventListener('click', () => {
+                            currentProduct = product;
+                            document.getElementById('productName').value = product.nombre;
+                            document.getElementById('productDescription').value = product.descripcion_larga;
+                            document.getElementById('productPrice').value = product.precio;
+                            editModal.style.display = 'block';
+                        });
+                        productInfoList.appendChild(edit);
 
-                    const drop = document.createElement('button');
-                    drop.textContent = `Eliminar producto ${product.id} (temporal)`;
-                    productInfoList.appendChild(drop);
+                        const drop = document.createElement('button');
+                        drop.textContent = `Eliminar producto ${product.id} (temporal)`;
+                        drop.addEventListener('click', () => {
+                            productCard.remove();
+                        });
+                        productInfoList.appendChild(drop);
 
-                    productCard.appendChild(productName);
-                    productCard.appendChild(productInfoList);
+                        productCard.appendChild(productName);
+                        productCard.appendChild(productInfoList);
 
-                    productsContainer.appendChild(productCard);
+                        productsContainer.appendChild(productCard);
+                    });
+                })
+                .catch(error => console.error('Error al cargar los productos:', error));
+
+            // Abrir modal para agregar producto
+            addProductButton.addEventListener('click', () => {
+                addModal.style.display = 'block';
+            });
+
+            // Cerrar el modal
+            closeEditModal.addEventListener('click', () => {
+                editModal.style.display = 'none';
+            });
+
+            closeAddModal.addEventListener('click', () => {
+                addModal.style.display = 'none';
+            });
+
+            // Agregar un nuevo producto temporalmente
+            let nextProductId = 11;
+            addForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const newProductId = nextProductId++;
+                const newProduct = {
+                    id: newProductId,
+                    nombre: document.getElementById('addProductName').value,
+                    descripcion_larga: document.getElementById('addProductDescription').value,
+                    precio: parseFloat(document.getElementById('addProductPrice').value).toFixed(2)
+                };
+
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.dataset.productId = newProduct.id;
+
+                const productName = document.createElement('h3');
+                productName.textContent = newProduct.nombre;
+
+                const productInfoList = document.createElement('ul');
+                const descriptionItem = document.createElement('li');
+                descriptionItem.textContent = `Descripción: ${newProduct.descripcion_larga}`;
+                productInfoList.appendChild(descriptionItem);
+
+                const priceItem = document.createElement('li');
+                priceItem.textContent = `Precio: $${newProduct.precio}`;
+                productInfoList.appendChild(priceItem);
+
+                const edit = document.createElement('button');
+                edit.textContent = `Editar producto ${newProduct.id} (temporal)`;
+                edit.addEventListener('click', () => {
+                    currentProduct = newProduct;
+                    document.getElementById('productName').value = newProduct.nombre;
+                    document.getElementById('productDescription').value = newProduct.descripcion_larga;
+                    document.getElementById('productPrice').value = newProduct.precio;
+                    editModal.style.display = 'block';
                 });
-            })
-            .catch(error => console.error('Error al cargar los productos:', error));
+                productInfoList.appendChild(edit);
+
+                const drop = document.createElement('button');
+                drop.textContent = `Eliminar producto ${newProduct.id} (temporal)`;
+                drop.addEventListener('click', () => {
+                    productCard.remove();
+                });
+                productInfoList.appendChild(drop);
+
+                productCard.appendChild(productName);
+                productCard.appendChild(productInfoList);
+
+                productsContainer.appendChild(productCard);
+
+                document.getElementById('addProductName').value = '';
+                document.getElementById('addProductDescription').value = '';
+                document.getElementById('addProductPrice').value = '';
+                addModal.style.display = 'none';
+            });
+
+            // Guardar los cambios temporalmente
+            editForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                if (currentProduct) {
+                    currentProduct.nombre = document.getElementById('productName').value;
+                    currentProduct.descripcion_larga = document.getElementById('productDescription').value;
+                    currentProduct.precio = parseFloat(document.getElementById('productPrice').value).toFixed(2);
+                    updateProductCard(currentProduct);
+                    editModal.style.display = 'none';
+                }
+            });
+
+            // Actualizar el DOM con los cambios
+            function updateProductCard(product) {
+                // const productCard = Array.from(productsContainer.children).find(card => card.querySelector('h3').textContent === product.nombre);
+                const productCard = productsContainer.querySelector(`[data-product-id='${product.id}']`);
+                if (productCard) {
+                    productCard.querySelector('h3').textContent = product.nombre;
+                    const infoItems = productCard.querySelectorAll('ul li');
+                    infoItems[0].textContent = `Descripción: ${product.descripcion_larga}`;
+                    infoItems[1].textContent = `Precio: $${product.precio}`;
+                }
+            }
+        });
+
     </script>
 
 </body>

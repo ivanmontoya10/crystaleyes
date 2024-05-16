@@ -22,55 +22,217 @@
     <div style="margin-left: 200px; padding: 20px;">
         <div class="container">
             <h2>Clientes</h2>
-            <button>Agregar usuario (temporal)</button>
+            <button id="addUserButton">Agregar usuario (temporal)</button>
             <div id="clients-container"></div>
         </div>
     </div>
 
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Cliente</h2>
+            <form id="editForm">
+                <label for="productName">Nombre:</label>
+                <input type="text" id="productName" name="productName" required>
+                <label for="productDescription">Correo:</label>
+                <textarea id="productDescription" name="productDescription" required></textarea>
+                <label for="productPrice">Dirección:</label>
+                <input type="text" id="productPrice" name="productPrice" step="0.01" required>
+                <label for="productFecha">Fecha de registro:</label>
+                <input type="text" id="productFecha" name="productFecha" step="0.01" required>
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agregar Cliente</h2>
+            <form id="addForm">
+                <label for="addProductName">Nombre:</label>
+                <input type="text" id="addProductName" name="addProductName" required>
+                <label for="addProductDescription">Correo:</label>
+                <textarea id="addProductDescription" name="addProductDescription" type="text" required></textarea>
+                <label for="addProductPrice">Direccion:</label>
+                <input type="text" id="addProductPrice" name="addProductPrice" step="0.01" required>
+                <label for="addProductDate">Fecha de registro:</label>
+                <input type="text" id="addProductDate" name="addProductDate" step="0.01" required>
+                <button type="submit">Agregar cliente</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // Cargar el archivo JSON de clientes
-        fetch('/crystaleyes/jsons/clientes.json')
-            .then(response => response.json())
-            .then(clients => {
-                // Obtener el contenedor de clientes
-                const clientsContainer = document.getElementById('clients-container');
+        document.addEventListener('DOMContentLoaded', () => {
+            const productsContainer = document.getElementById('clients-container');
+            const editModal = document.getElementById('editModal');
+            const addModal = document.getElementById('addModal');
+            // const closeModal = document.getElementsByClassName('close')[0];
+            const closeEditModal = editModal.querySelector('.close');
+            const closeAddModal = addModal.querySelector('.close');
+            const editForm = document.getElementById('editForm');
+            const addForm = document.getElementById('addForm');
+            const addProductButton = document.getElementById('addUserButton');
+            let currentProduct = null;
 
-                // Generar el HTML para cada cliente
-                clients.forEach(client => {
-                    const clientCard = document.createElement('div');
-                    clientCard.classList.add('client-card');
+            // Cargar el archivo JSON de productos
+            fetch('/crystaleyes/jsons/clientes.json')
+                .then(response => response.json())
+                .then(clients => {
+                    // Generar el HTML para cada producto
+                    clients.forEach(client => {
+                        const productCard = document.createElement('div');
+                        productCard.classList.add('product-card');
+                        productCard.dataset.productId = client.id;
 
-                    const clientName = document.createElement('h3');
-                    clientName.textContent = client.nombre;
+                        const productName = document.createElement('h3');
+                        productName.textContent = client.nombre;
 
-                    const clientInfoList = document.createElement('ul');
-                    const emailItem = document.createElement('li');
-                    emailItem.textContent = `Correo: ${client.correo}`;
-                    clientInfoList.appendChild(emailItem);
+                        const productInfoList = document.createElement('ul');
+                        const descriptionItem = document.createElement('li');
+                        descriptionItem.textContent = `Correo: ${client.correo}`;
+                        productInfoList.appendChild(descriptionItem);
 
-                    const addressItem = document.createElement('li');
-                    addressItem.textContent = `Dirección: ${client.direccion}`;
-                    clientInfoList.appendChild(addressItem);
+                        const priceItem = document.createElement('li');
+                        priceItem.textContent = `Dirección: ${client.direccion}`;
+                        productInfoList.appendChild(priceItem);
 
-                    const registrationDateItem = document.createElement('li');
-                    registrationDateItem.textContent = `Fecha de Registro: ${client.fecha_registro}`;
-                    clientInfoList.appendChild(registrationDateItem);
+                        const fechaItem = document.createElement('li');
+                        fechaItem.textContent = `Fecha de registro: ${client.fecha_registro}`;
+                        productInfoList.appendChild(fechaItem);
 
-                    const edit = document.createElement('button');
-                    edit.textContent = `Editar cliente ${client.id} (temporal)`;
-                    clientInfoList.appendChild(edit);
+                        const edit = document.createElement('button');
+                        edit.textContent = `Editar cliente ${client.id} (temporal)`;
+                        edit.addEventListener('click', () => {
+                            currentProduct = client;
+                            document.getElementById('productName').value = client.nombre;
+                            document.getElementById('productDescription').value = client.correo;
+                            document.getElementById('productPrice').value = client.direccion;
+                            document.getElementById('productFecha').value = client.fecha_registro;
+                            editModal.style.display = 'block';
+                        });
+                        productInfoList.appendChild(edit);
 
-                    const drop = document.createElement('button');
-                    drop.textContent = `Eliminar cliente ${client.id} (temporal)`;
-                    clientInfoList.appendChild(drop);
+                        const drop = document.createElement('button');
+                        drop.textContent = `Eliminar cliente ${client.id} (temporal)`;
+                        drop.addEventListener('click', () => {
+                            productCard.remove();
+                        });
+                        productInfoList.appendChild(drop);
 
-                    clientCard.appendChild(clientName);
-                    clientCard.appendChild(clientInfoList);
+                        productCard.appendChild(productName);
+                        productCard.appendChild(productInfoList);
 
-                    clientsContainer.appendChild(clientCard);
+                        productsContainer.appendChild(productCard);
+                    });
+                })
+                .catch(error => console.error('Error al cargar los productos:', error));
+
+            // Abrir modal para agregar producto
+            addProductButton.addEventListener('click', () => {
+                addModal.style.display = 'block';
+            });
+
+            // Cerrar el modal
+            closeEditModal.addEventListener('click', () => {
+                editModal.style.display = 'none';
+            });
+
+            closeAddModal.addEventListener('click', () => {
+                addModal.style.display = 'none';
+            });
+
+            // Agregar un nuevo producto temporalmente
+            let nextProductId = 11;
+            addForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const newProductId = nextProductId++;
+                const newProduct = {
+                    id: newProductId,
+                    nombre: document.getElementById('addProductName').value,
+                    correo: document.getElementById('addProductDescription').value,
+                    direccion: document.getElementById('addProductPrice').value,
+                    fecha_registro: document.getElementById('addProductDate').value,
+                };
+
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+                productCard.dataset.productId = newProduct.id;
+
+                const productName = document.createElement('h3');
+                productName.textContent = newProduct.nombre;
+
+                const productInfoList = document.createElement('ul');
+                const descriptionItem = document.createElement('li');
+                descriptionItem.textContent = `Correo: ${newProduct.correo}`;
+                productInfoList.appendChild(descriptionItem);
+
+                const priceItem = document.createElement('li');
+                priceItem.textContent = `Dirección: $${newProduct.direccion}`;
+                productInfoList.appendChild(priceItem);
+
+                const dateItem = document.createElement('li');
+                dateItem.textContent = `Fecha de registro: $${newProduct.fecha_registro}`;
+                productInfoList.appendChild(dateItem);
+
+                const edit = document.createElement('button');
+                edit.textContent = `Editar producto ${newProduct.id} (temporal)`;
+                edit.addEventListener('click', () => {
+                    currentProduct = newProduct;
+                    document.getElementById('productName').value = newProduct.nombre;
+                    document.getElementById('productDescription').value = newProduct.correo;
+                    document.getElementById('productPrice').value = newProduct.direccion;
+                    document.getElementById('productFecha').value = newProduct.fecha_registro;
+                    editModal.style.display = 'block';
                 });
-            })
-            .catch(error => console.error('Error al cargar los clientes:', error));
+                productInfoList.appendChild(edit);
+
+                const drop = document.createElement('button');
+                drop.textContent = `Eliminar producto ${newProduct.id} (temporal)`;
+                drop.addEventListener('click', () => {
+                    productCard.remove();
+                });
+                productInfoList.appendChild(drop);
+
+                productCard.appendChild(productName);
+                productCard.appendChild(productInfoList);
+
+                productsContainer.appendChild(productCard);
+
+                document.getElementById('addProductName').value = '';
+                document.getElementById('addProductDescription').value = '';
+                document.getElementById('addProductPrice').value = '';
+                document.getElementById('addProductDate').value = '';
+                addModal.style.display = 'none';
+            });
+
+            // Guardar los cambios temporalmente
+            editForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                if (currentProduct) {
+                    currentProduct.nombre = document.getElementById('productName').value;
+                    currentProduct.correo = document.getElementById('productDescription').value;
+                    currentProduct.direccion = document.getElementById('productPrice').value;
+                    currentProduct.fecha_registro = document.getElementById('productFecha').value;
+                    updateProductCard(currentProduct);
+                    editModal.style.display = 'none';
+                }
+            });
+
+            // Actualizar el DOM con los cambios
+            function updateProductCard(client) {
+                // const productCard = Array.from(productsContainer.children).find(card => card.querySelector('h3').textContent === product.nombre);
+                const productCard = productsContainer.querySelector(`[data-product-id='${client.id}']`);
+                if (productCard) {
+                    productCard.querySelector('h3').textContent = client.nombre;
+                    const infoItems = productCard.querySelectorAll('ul li');
+                    infoItems[0].textContent = `Correo: ${client.correo}`;
+                    infoItems[1].textContent = `Dirección: ${client.direccion}`;
+                    infoItems[2].textContent = `Fecha de registro: ${client.fecha_registro}`;
+                }
+            }
+        });
     </script>
 
 </body>
