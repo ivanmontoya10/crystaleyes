@@ -397,6 +397,20 @@
     margin-bottom: 10px;
 }
 
+/* .rating {
+  font-size: 40px; /* Tamaño de las estrellas */
+
+  .star {
+    cursor: pointer;
+    color: #bbb; /* Color de las estrellas (blanco) */
+    font-size: 40px;
+  }
+  
+  .star:hover,
+  .star.checked{
+    color: gold;
+  }
+  
 
 
 

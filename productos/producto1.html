@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../index.css">
     <link rel="stylesheet" href="producto.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Lente Oftálmico Gucci GG0027O Havana</title>
 </head>
 <div class="msj-act">Bienvenido a nuestra tienda</div>
@@ -156,8 +157,6 @@
                 });
 
         });
-
-
     </script>
     <script>
         function agregarAListaDeseos() {
@@ -200,82 +199,126 @@
     </script>
 
 
-    <section id="comentarios">
-        <div id="lista-comentarios">
-            <!-- Aquí se mostrarán los comentarios -->
+<section id="comentarios">
+    <div id="lista-comentarios">
+        <!-- Aquí se mostrarán los comentarios -->
+    </div>
+    <h2 class="reviews">Reseñas</h2>
+    <h4 class="añadir-comentarios">Agregar comentario</h4><br><br>
+    <form id="formulario-comentario">
+        <div>
+            <label for="nombre">Nombre de usuario:</label>
+            <input type="text" id="nombre" name="nombre" required>
         </div>
-        <h2 class="reviews">Reseñas</h2>
-        <h4 class="añadir-comentarios">Agregar comentario</h4><br><br>
-        <form id="formulario-comentario">
-            <div>
-                <label for="nombre">Nombre de usuario:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="rating">
+        <div class="rating">
+            <label for="comentario">Calificación</label>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+        </div>
+        <div>
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario" required></textarea>
+        </div>
 
-            </div>
-            <div>
-                <label for="comentario">Comentario:</label>
-                <textarea id="comentario" name="comentario" required></textarea>
-            </div>
+        <button type="submit">Agregar Comentario</button>
+    </form>
+</section>
 
-            <button type="submit">Agregar Comentario</button>
-        </form>
-    </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mostrarComentarios();
+    });
 
-    <script>
-        document.getElementById("formulario-comentario").addEventListener("submit", function (event) {
-            event.preventDefault();
+    const stars = document.querySelectorAll('.star');
 
-            var nombre = document.getElementById("nombre").value;
-            var comentario = document.getElementById("comentario").value;
-
-            var nuevoComentario = {
-                nombre: nombre,
-                comentario: comentario
-            };
-
-            var comentariosGuardados = localStorage.getItem("comentarios");
-
-            var comentarios = comentariosGuardados ? JSON.parse(comentariosGuardados) : [];
-
-            comentarios.push(nuevoComentario);
-
-            localStorage.setItem("comentarios", JSON.stringify(comentarios));
-
-            document.getElementById("nombre").value = "";
-            document.getElementById("comentario").value = "";
-
-            mostrarComentarios();
+    stars.forEach(function(star, index) {
+        star.addEventListener('click', function() {
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add('checked');
+            }
+            for (let i = index + 1; i < stars.length; i++) {
+                stars[i].classList.remove('checked');
+            }
         });
+    });
 
-        function mostrarComentarios() {
-            var comentariosGuardados = localStorage.getItem("comentarios");
-            var listaComentarios = document.getElementById("lista-comentarios");
+    document.getElementById("formulario-comentario").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-            listaComentarios.innerHTML = "";
+        var nombre = document.getElementById("nombre").value;
+        var comentario = document.getElementById("comentario").value;
+        var valoracion = document.querySelectorAll('.star.checked').length;
 
-            if (comentariosGuardados) {
-                var comentarios = JSON.parse(comentariosGuardados);
-                comentarios.forEach(function (comentario) {
-                    var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
-                    var comentarioHTML = `
-            <div class="comentario">
-                <div style="display: flex; align-items: center;"> <!-- Contenedor para la foto y el nombre -->
-                    <img src="${rutaImagenPerfil}" class="foto-perfil" style="width: 60px; height: 60px; margin-right: 10px;"> <!-- Foto con margen derecho -->
-                    <strong>${comentario.nombre}</strong> <!-- Nombre del usuario -->
-                </div>
-                <div class="contenido-comentario">
-                   <br> <p>${comentario.comentario}</p> <!-- Comentario en un nuevo párrafo -->
-                 </div>
-            </div>`;
-                    listaComentarios.innerHTML += comentarioHTML;
-                });
+        var nuevaReseña = {
+            nombre: nombre,
+            comentario: comentario,
+            valoracion: valoracion
+        };
+
+        var reseñasGuardadas = sessionStorage.getItem("reseñas");
+        var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
+
+        reseñas.push(nuevaReseña);
+
+        sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
+
+        document.getElementById("nombre").value = "";
+        document.getElementById("comentario").value = "";
+
+        mostrarComentarios();
+    });
+
+    function mostrarComentarios() {
+        var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
+        var listaComentarios = document.getElementById("lista-comentarios");
+
+        listaComentarios.innerHTML = "";
+
+        var reseñasGuardadas = sessionStorage.getItem("reseñas");
+
+        if (reseñasGuardadas) {
+            var reseñas = JSON.parse(reseñasGuardadas);
+
+            reseñas.forEach(function(reseña) {
+                var comentarioHTML = `
+                    <div class="comentario">
+                        <div style="display: flex; align-items: center;">
+                            <img src="${rutaImagenPerfil}" class="foto-perfil" style="width: 60px; height: 60px; margin-right: 10px;">
+                            <strong>${reseña.nombre}</strong>
+                        </div>
+                        <div class="rating">
+                            ${mostrarEstrellas(reseña.valoracion)}
+                        </div>
+                        <p>${reseña.comentario}</p>
+                    </div>`;
+                listaComentarios.innerHTML += comentarioHTML;
+            });
+        }
+    }
+
+    function mostrarEstrellas(valoracion) {
+        var estrellasHTML = "";
+
+        for (var i = 0; i < 5; i++) {
+            if (i < valoracion) {
+                estrellasHTML += '<i class="bi bi-star-fill star checked"></i>';
+            } else {
+                estrellasHTML += '<i class="bi bi-star-fill star"></i>';
             }
         }
 
-        mostrarComentarios();
-    </script>
+        return estrellasHTML;
+    }
+
+    // Limpiar los comentarios al recargar la página
+    window.addEventListener("beforeunload", function() {
+        sessionStorage.removeItem("reseñas");
+    });
+</script>
+
 </body>
 
 <footer>
