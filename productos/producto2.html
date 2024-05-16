@@ -247,16 +247,18 @@
         });
     
         document.getElementById("formulario-comentario").addEventListener("submit", function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
     var usuario = document.getElementById("nombre").value;
     var comentario = document.getElementById("comentario").value;
     var valoracion = document.querySelector('.star.checked').getAttribute('data-value');
+    var indiceEstrellaSeleccionada = Array.from(document.querySelectorAll('.star')).indexOf(document.querySelector('.star.checked'));
 
     var nuevoComentario = {
         usuario: usuario,
         comentario: comentario,
-        valoracion: valoracion
+        valoracion: valoracion,
+        indiceEstrellaSeleccionada: indiceEstrellaSeleccionada
     };
 
     // Guardar en sessionStorage
@@ -268,7 +270,6 @@
     sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
 
     // Configurar el estado de las estrellas
-    mostrarComentarios();
 
     // Guardar en localStorage (JSON)
     var comentariosGuardados = localStorage.getItem("comentarios");
@@ -280,6 +281,8 @@
 
     document.getElementById("nombre").value = "";
     document.getElementById("comentario").value = "";
+
+    mostrarComentarios();
 });
     
         function mostrarComentarios() {
@@ -309,19 +312,16 @@
                     </div>
                 </div>`;
             listaComentarios.innerHTML += comentarioHTML;
-        });
 
-        // Configurar el estado de las estrellas
-        var comentarios = document.querySelectorAll('.comentario');
-        comentarios.forEach(function(comentario, index) {
-            var stars = comentario.querySelectorAll('.star');
-            stars.forEach(function(star, starIndex) {
-                if (starIndex < reseñas[index].valoracion) {
-                    star.classList.add('checked');
-                } else {
-                    star.classList.remove('checked');
-                }
-            });
+            var stars = listaComentarios.lastChild.querySelectorAll('.star');
+        var indiceEstrellaSeleccionada = reseña.indiceEstrellaSeleccionada;
+        stars.forEach(function(star, starIndex) {
+            if (starIndex <= indiceEstrellaSeleccionada) {
+                star.classList.add('checked');
+            } else {
+                star.classList.remove('checked');
+            }
+        });
         });
     }
 
