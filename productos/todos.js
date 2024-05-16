@@ -31,24 +31,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 productos = data;
 
-                const productosDiv = document.getElementById('productos-todos');
+                const productosDiv = document.getElementById('productos');
                 productosDiv.innerHTML = '';
 
                 data.forEach(producto => {
                     const productoDiv = document.createElement('div');
-                    productoDiv.classList.add('producto-card-todos');
+                    productoDiv.classList.add('producto-card');
 
                     productoDiv.innerHTML = `
-                    <div class="producto-img">
-                    <img src="/crystaleyes/imgs/${producto.img1}">
-                </div>
-                <div class="producto-info">
+                <div>
+                    <img src="${producto.img1}">
                     <h2>${producto.nombre}</h2>
-                    <p class="precio-des">$${producto.precio} MXN</p>
-                    <p>${producto.descripcion_larga}</p>
-                    <div class="producto-btn">
-                        <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                    </div>
+                    <p class="precio">$${producto.precio}</p>
+                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
                 </div>
             `;
 
@@ -104,25 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Limpia y vuelve a renderizar los productos
-        const productosDiv = document.getElementById('productos-todos');
+        const productosDiv = document.getElementById('productos');
         productosDiv.innerHTML = '';
 
         productos.forEach(producto => {
             const productoDiv = document.createElement('div');
-            productoDiv.classList.add('producto-card-todos');
+            productoDiv.classList.add('producto-card');
 
             productoDiv.innerHTML = `
-            <div class="producto-img">
-                <img src="/crystaleyes/imgs/${producto.img1}">
-            </div>
-            <div class="producto-info">
-                <h2>${producto.nombre}</h2>
-                <p class="precio-des">$${producto.precio} MXN</p>
-                <p>${producto.descripcion_larga}</p>
-                <div class="producto-btn">
+                <div>
+                    <img src="${producto.img1}">
+                    <h2>${producto.nombre}</h2>
+                    <p class="precio">$${producto.precio}</p>
                     <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
                 </div>
-            </div>
             `;
 
             productosDiv.appendChild(productoDiv);

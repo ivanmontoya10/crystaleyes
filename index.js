@@ -6,6 +6,20 @@ cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
 });
 
+// JavaScript para mostrar el formulario de búsqueda al colocar el mouse sobre el icono
+document.addEventListener('DOMContentLoaded', function () {
+    const searchIcon = document.getElementById('search-icon');
+    const searchFormContainer = document.querySelector('.search-form-container');
+
+    searchIcon.addEventListener('mouseenter', function () {
+        searchFormContainer.classList.remove('hidden-search');
+    });
+
+    searchIcon.addEventListener('mouseleave', function () {
+        searchFormContainer.classList.add('hidden-search');
+    });
+});
+
 // document.addEventListener('DOMContentLoaded', function () {
 //     const searchForm = document.getElementById('search-form');
 //     const searchInput = document.getElementById('search-input');
