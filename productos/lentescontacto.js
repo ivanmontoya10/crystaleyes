@@ -22,19 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             productosOftalmicos = data.filter(producto => producto.categoria === "Contacto");
 
-            const productosDiv = document.getElementById('productos');
+            const productosDiv = document.getElementById('productos-con');
             productosDiv.innerHTML = '';
 
             productosOftalmicos.forEach(producto => {
                 const productoDiv = document.createElement('div');
-                productoDiv.classList.add('producto-card');
+                productoDiv.classList.add('producto-card-con');
                 productoDiv.innerHTML = `
-                    <div>
-                        <img src="${producto.img1}">
-                        <h2>${producto.nombre}</h2>
-                        <p class="precio">$${producto.precio} MXN</p>
-                        <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                    </div>
+                <div class="producto-img">
+                <img src="/crystaleyes/imgs/${producto.img1}">
+            </div>
+            <div class="producto-info">
+                <h2>${producto.nombre}</h2>
+                <p class="precio-des">$${producto.precio} MXN</p>
+                <p>${producto.descripcion_larga}</p>
+                <div class="producto-btn">
+                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                </div>
+            </div>
                 `;
 
                 productosDiv.appendChild(productoDiv);
@@ -70,17 +75,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const renderizarProductos = (productos) => {
-        const productosDiv = document.getElementById('productos');
+        const productosDiv = document.getElementById('productos-con');
         productosDiv.innerHTML = '';
 
         productos.forEach(producto => {
             const productoDiv = document.createElement('div');
-            productoDiv.classList.add('producto-card');
+            productoDiv.classList.add('producto-card-con');
             productoDiv.innerHTML = `
                 <div>
                     <img src="${producto.img1}">
                     <h2>${producto.nombre}</h2>
                     <p class="precio">$${producto.precio}</p>
+                    <p>${producto.descripcion_larga}</p>
                     <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
                 </div>
             `;

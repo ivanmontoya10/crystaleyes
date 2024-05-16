@@ -19,34 +19,40 @@
     <nav class="nav" id="nav">
         <button class="cerrar-menu" id="cerrar"><i class="bi bi-x"></i></button>
         <ul class="nav-list">
-            <li><a href="/crystaleyes/index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="#">Productos</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
-                    <li><a href="/crystaleyes/productos/oftalmico.html">Lentes oftálmicos</a></li>
-                    <li><a href="/crystaleyes/productos/lentescontacto.html">Lentes de contacto</a></li>
-                    <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
-                </ul>
-            </li>
-            <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
-            <div class="search-form-container">
-                <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
-                    <input type="text" name="query" placeholder="Buscar...">
-                    <button type="submit"><i class="bi bi-search"></i></button>
-                </form>
+            <div class="menu-left">
+                <li><a href="/crystaleyes/index.html">Hogar</a></li>
+                <li class="dropdown">
+                    <a href="#">Catálogo de Productos</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/crystaleyes/productos/todos.html">Todos los productos</a></li>
+                        <li><a href="/crystaleyes/productos/oftalmico.html">Lentes oftálmicos</a></li>
+                        <li><a href="/crystaleyes/productos/lentescontacto.html">Lentes de contacto</a></li>
+                        <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
+                    </ul>
+                </li>
+                <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
+            </div>
+            <div class="menu-right">
+                <div class="search-form-container">
+                    <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
+                        <div class="show-input">
+                            <input id="search-input" type="text" name="query" placeholder="Buscar...">
+                        </div>
+                        <button id="search-button" type="submit"><i class="bi bi-search" style="font-size: 20px"></i></button>
+                    </form>
+                </div>
             </div>
             <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square"
-                        style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-box2-heart"
-                        style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-cart3" style="font-size: 24px"></i></a></li>
-            <li><a href="/crystaleyes/loginregister/login.html"><button class="icon-button login-button"><i
-                            class="bi bi-person-fill"></i><span class="login-text">Iniciar
-                            sesión</span></button></a></li>
-            <li><a href="/crystaleyes/loginregister/register.html"><button class="icon-button register-button"><i
-                            class="bi bi-person-plus-fill"></i><span
-                            class="register-text">Registrarse</span></button></a></li>
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-heart"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/loginregister/login.html"><i class="bi bi-person" 
+                style="font-size: 20px"></i></a>
+            </li>
+            <li><a href="/crystaleyes/loginregister/register.html"><i class="bi bi-person-plus"
+                style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-bag" 
+                style="font-size: 20px"></i></a></li>
         </ul>
     </nav>
 </header>
@@ -138,7 +144,8 @@
                             <div class="info-producto">
                                 <h2>${productoId1.nombre}</h2>
                                 <p class="precio">$${productoId1.precio}</p>
-                                <p class="descripcion">${productoId1.descripcion_larga}</p><br>
+                                <p class="descripcion">${productoId1.descripcion_corta}</p><br>
+                                <p class="descripcion">Descripción: ${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos">Agregar a lista de deseos</button>
                             </div>
@@ -151,6 +158,7 @@
                         <div id="detalle-producto" class="productoID1">
                             <div class="info-producto">
                                 <p class="precio">$${productoId1.precio}</p>
+                                <p>${productoId1.descripcion_corta}</p><br>
                                 <p>${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos" >Agregar a lista de deseos</button>
@@ -165,12 +173,12 @@
                             if (!productoExistente) {
 
                                 listaDeseos.push(productoId1);
-                                localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
+                                // localStorage.setItem('listaDeseos', JSON.stringify(listaDeseos));
                                 alert('Producto agregado a lista de deseos');
 
                                 this.classList.add('disabled-button');
                             } else {
-                                window.location.href = "/crystaleyes/listadeseos/listadeseos.html";
+                                alert('El producto ya ha sido añadido a la lista de deseos');
                             }
                         });
 
@@ -182,12 +190,12 @@
                             if (!productoExistente) {
 
                                 carrito.push(productoId1);
-                                localStorage.setItem('carrito', JSON.stringify(carrito));
+                                // localStorage.setItem('carrito', JSON.stringify(carrito));
                                 alert('Producto agregado al carrito');
 
                                 this.classList.add('disabled-button');
                             } else {
-                                window.location.href = "/crystaleyes/carrito/carrito.html";
+                                alert('El producto ya ha sido añadido al carrito');
                             }
                         });
 
@@ -231,20 +239,20 @@
                 <label for="comentario">Comentario:</label>
                 <textarea id="comentario" name="comentario" required></textarea>
             </div>
-    
+
             <button type="submit">Agregar Comentario</button>
         </form>
     </section>
-    
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             mostrarComentarios();
         });
-    
+
         const stars = document.querySelectorAll('.star');
-    
-        stars.forEach(function(star, index) {
-            star.addEventListener('click', function() {
+
+        stars.forEach(function (star, index) {
+            star.addEventListener('click', function () {
                 for (let i = 0; i <= index; i++) {
                     stars[i].classList.add('checked');
                 }
@@ -253,45 +261,45 @@
                 }
             });
         });
-    
-        document.getElementById("formulario-comentario").addEventListener("submit", function(event) {
+
+        document.getElementById("formulario-comentario").addEventListener("submit", function (event) {
             event.preventDefault();
-    
+
             var nombre = document.getElementById("nombre").value;
             var comentario = document.getElementById("comentario").value;
             var valoracion = document.querySelectorAll('.star.checked').length;
-    
+
             var nuevaReseña = {
                 nombre: nombre,
                 comentario: comentario,
                 valoracion: valoracion
             };
-    
+
             var reseñasGuardadas = sessionStorage.getItem("reseñas");
             var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
-    
+
             reseñas.push(nuevaReseña);
-    
+
             sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
-    
+
             document.getElementById("nombre").value = "";
             document.getElementById("comentario").value = "";
-    
+
             mostrarComentarios();
         });
-    
+
         function mostrarComentarios() {
             var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
             var listaComentarios = document.getElementById("lista-comentarios");
-    
+
             listaComentarios.innerHTML = "";
-    
+
             var reseñasGuardadas = sessionStorage.getItem("reseñas");
-    
+
             if (reseñasGuardadas) {
                 var reseñas = JSON.parse(reseñasGuardadas);
-    
-                reseñas.forEach(function(reseña) {
+
+                reseñas.forEach(function (reseña) {
                     var comentarioHTML = `
                         <div class="comentario">
                             <div style="display: flex; align-items: center;">
@@ -307,10 +315,10 @@
                 });
             }
         }
-    
+
         function mostrarEstrellas(valoracion) {
             var estrellasHTML = "";
-    
+
             for (var i = 0; i < 5; i++) {
                 if (i < valoracion) {
                     estrellasHTML += '<i class="bi bi-star-fill star checked"></i>';
@@ -318,17 +326,16 @@
                     estrellasHTML += '<i class="bi bi-star-fill star"></i>';
                 }
             }
-    
+
             return estrellasHTML;
         }
-    
+
         // Limpiar los comentarios al recargar la página
-        window.addEventListener("beforeunload", function() {
+        window.addEventListener("beforeunload", function () {
             sessionStorage.removeItem("reseñas");
         });
     </script>
-
-
+    <script src="../buscar.js"></script>
 </body>
 
 <footer>

@@ -16,7 +16,7 @@
         "img1": "../Imgs/L2-1.png"
     },
       {
-        "id": 4,
+        "id": 3,
         "nombre": "Lente Oftálmico Seen SNFF10 Vino",
         "precio": 770,
         "descripcion_corta": "",
@@ -24,7 +24,7 @@
         "img1": "../Imgs/L4-1.png"
       },
       {
-        "id": 5,
+        "id": 4,
         "nombre": "Lentes de Contacto Lunare cosmético Neutro",
         "precio": 500,
         "descripcion_corta": "",

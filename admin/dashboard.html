@@ -43,7 +43,7 @@
 
     <script>
         // Cargar el resumen de órdenes
-        fetch('ordenes.json')
+        fetch('http://localhost/crystaleyes/jsons/ordenes.json')
             .then(response => response.json())
             .then(orders => {
                 const ordersSummary = document.getElementById('orders-summary');
