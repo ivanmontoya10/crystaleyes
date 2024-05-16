@@ -1,0 +1,22 @@
+[
+    {
+        "id": "#00016",
+        "producto": "Armazon Rosa RayBan",
+        "descripcion": "Armazon Rosado, Nueva Linea RayBan 2024, diseño redondo",
+        "cantidad": 1,
+        "total": "$2800.00",
+        "fecha": "06 de Mayo de 2024",
+        "estado_pago": "Pagado",
+        "estado_pedido": "En Proceso"
+    },
+    {
+        "id": "#00017",
+        "producto": "Lentes de Contacto",
+        "descripcion": "Lentes de contacto, transparente, 6 meses",
+        "cantidad": 2,
+        "total": "$500.00",
+        "fecha": "07 de Mayo de 2024",
+        "estado_pago": "Pagado",
+        "estado_pedido": "Enviado"
+    }
+]
