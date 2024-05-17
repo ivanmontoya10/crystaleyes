@@ -13,13 +13,13 @@ const cargarProductos = () => {
         method: 'GET',
         credentials: 'include'
     })
-    .then(response => response.json())
-    .then(data => {
-        productos = data;
-        console.log('Productos cargados:', productos); // Verificar que los productos se carguen correctamente
-        renderizarProductos();
-    })
-    .catch(error => console.error('Error al cargar el archivo JSON:', error));
+        .then(response => response.json())
+        .then(data => {
+            productos = data;
+            console.log('Productos cargados:', productos); // Verificar que los productos se carguen correctamente
+            renderizarProductos();
+        })
+        .catch(error => console.error('Error al cargar el archivo JSON:', error));
 };
 
 const renderizarProductos = () => {
@@ -103,15 +103,29 @@ const obtenerCategoriaActual = () => {
 // Función para crear una tarjeta de producto
 const crearCardProducto = (producto) => {
     const productoDiv = document.createElement('div');
-    productoDiv.classList.add('producto-card');
+    //productoDiv.classList.add('producto-card');
+    productoDiv.classList.add('producto-card-todos');
     productoDiv.innerHTML = `
-        <div>
+        <!--<div>
             <img src="${producto.img1}">
             <h2>${producto.nombre}</h2>
             <p class="precio">$${producto.precio}</p>
             <p>${producto.descripcion_larga}</p>
             <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+        </div>-->
+        
+        <div class="producto-img">
+            <img src="/crystaleyes/imgs/${producto.img1}">
         </div>
+        <div class="producto-info">
+            <h2>${producto.nombre}</h2>
+            <p class="precio-des">$${producto.precio} MXN</p>
+            <p>${producto.descripcion_larga}</p>
+            <div class="producto-btn">
+                <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+            </div>
+        </div>
+
     `;
     return productoDiv;
 };
