@@ -1,0 +1,97 @@
+#productos-todos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 25px; 
+}
+
+.producto-card-todos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(33.33% - 20px);
+    padding: 16px;
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+.producto-img {
+    width: 100%;
+    height: 200px; 
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.producto-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+}
+
+.producto-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    text-align: justify;
+}
+
+.producto-info h2, .producto-info p {
+    margin: 8px 0;
+}
+
+.precio-des {
+    font-size: 22px;
+    color: green; 
+    font-weight: bold;
+}
+
+.producto-btn {
+    margin-top: auto; 
+    text-align: center;
+}
+
+.producto-btn button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.producto-btn button:hover {
+    background-color: #2980b9;
+}
+
+.btn-ver-todo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.vertodo a {
+    background-color: black;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .producto-card-todos {
+        width: calc(50% - 20px); 
+    }
+}
+
+@media (max-width: 768px) {
+    .producto-card-todos {
+        width: calc(100% - 20px); 
+    }
+}
