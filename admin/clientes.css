@@ -1,11 +1,10 @@
 /* Estilos específicos para las tarjetas de clientes */
 .client-card {
-   border: 1px solid #ccc;
+    border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     margin-bottom: 20px;
     padding: 20px;
     background-color: #F2F3F4;
-
     font-family: Arial, sans-serif; /* Cambia el estilo de la fuente */
     font-size: 16px; /* Cambia el tamaño de la letra */
 }
@@ -43,11 +42,11 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto; 
+    margin: 2% auto; 
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
-    width: 80%;
+    width: 50%;
 }
 
 .close {
@@ -83,4 +82,35 @@
     margin-bottom: 20px; /* Aplica un espacio de 20px debajo del botón */
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+}
 
+form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #D4E6F1; /* Green */
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #BFC9CA;
+}
