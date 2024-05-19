@@ -166,6 +166,20 @@ header {
   .msj-act {
     display: none;
   }
+  .menu-left {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    align-items: flex-end; /* Alinear los elementos a la derecha */
+
+  }
+
+  .menu-left li {
+    display: block;
+    margin-bottom: 10px;
+
+  }
+  
 }
 
 .search-form {
@@ -185,8 +199,32 @@ header {
 }
 
 @media screen and (max-width: 750px) {
-  .search-form-container {
-    display: none;
+  .search-form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .search-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+  }
+
+  .search-form button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .search-form button:hover {
+    background-color: #0056b3;
   }
 }
 .search-form button {
