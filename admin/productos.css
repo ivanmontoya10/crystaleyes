@@ -5,7 +5,6 @@
     margin-bottom: 20px;
     padding: 20px;
     background-color: #F2F3F4;
-
     font-family: Arial, sans-serif; /* Cambia el estilo de la fuente */
     font-size: 16px; /* Cambia el tamaño de la letra */
 }
@@ -27,6 +26,7 @@
     margin-bottom: 5px;
 }
 
+/* Modal */
 .modal {
     display: none; 
     position: fixed; 
@@ -36,31 +36,82 @@
     width: 100%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro */
     padding-top: 60px; 
 }
 
+/* Contenido del modal */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #ffffff; /* Fondo blanco */
     margin: 5% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
+    padding: 30px; /* Más espacio de relleno */
+    border: 2px solid #000; /* Borde más grueso y oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 90%; /* Ajustar el ancho */
+    max-width: 1000px; /* Ancho máximo para pantallas grandes */
+    transition: transform 0.3s ease-out; /* Suave transición al aparecer */
 }
 
+/* Botón de cerrar */
 .close {
-    color: #aaa;
+    color: #ff0000; /* Color rojo */
     float: right;
-    font-size: 28px;
+    font-size: 32px; /* Tamaño de fuente más grande */
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #000; /* Cambia a negro al pasar el cursor */
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal.show .modal-content {
+    transform: scale(1); /* Escala normal al mostrar */
+}
+
+.modal.hide .modal-content {
+    transform: scale(0.7); /* Escala reducida al esconder */
+}
+
+/* Estilos para los elementos del formulario dentro del modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form label {
+    margin-top: 10px; /* Espacio superior */
+    margin-bottom: 5px; /* Espacio inferior */
+    font-weight: bold;
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="number"],
+.modal-content form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Espacio inferior */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.modal-content form button {
+    background-color: #D4E6F1;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Espacio superior */
+}
+
+.modal-content form button:hover {
+    background-color: #BFC9CA;
 }
 
 #addProductButton {
@@ -81,5 +132,3 @@
 #products-container {
     margin-top: 20px; /* Ajusta el tamaño del espacio según sea necesario */
 }
-
-
