@@ -14,7 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="producto.css">
+    <link rel="stylesheet" href="todos.css">
+    <!-- <link rel="stylesheet" href="producto.css"> -->
 </head>
 <div class="msj-act">Bienvenido a nuestra tienda</div>
 <header>
@@ -34,11 +35,11 @@
                         <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
                     </ul>
                 </li>
-                <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
+                <li><a href="/crystaleyes/contacto/contacto.html">Preguntas Frecuentes</a></li>
             </div>
             <div class="menu-right">
                 <div class="search-form-container">
-                    <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
+                    <form class="search-form" action="/crystaleyes/productos/busqueda.html" method="GET">
                         <div class="show-input">
                             <input id="search-input" type="text" name="query" placeholder="Buscar...">
                         </div>
@@ -73,7 +74,7 @@
             <option value="nombre_desc">Nombre - Z a A</option>
         </select>
     </div>
-    <div id="productos" class="productos"></div>
+    <div id="productos-todos" class="productos-todos"></div>
     <script src="todos.js"></script>
 
     <div class="esquina-inferior" onclick="toggleChatPanel(event)">
@@ -106,7 +107,7 @@
             event.stopPropagation();
         });
     </script>
-    <script src="../buscar.js"></script>
+    <script src="buscar.js"></script>
 </body>
 
 <footer>

@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="lentesol.css">
+    <link rel="stylesheet" href="busqueda.css">
     <!-- <link rel="stylesheet" href="producto.css"> -->
 </head>
 <div class="msj-act">Bienvenido a nuestra tienda</div>
@@ -63,7 +63,8 @@
 </header>
 
 <body>
-    <h1 style="padding: 20px;">Categoría: Lentes de sol</h1>
+    <div style="font-size: 24px; padding-top: 15px; padding-left: 30px" id="resultados"></div> <!-- Div para mostrar los mensajes de resultados -->
+
     <div class="filtros">
         <select id="ordenar">
             <option value="" disabled selected>Ordenar por</option>
@@ -73,8 +74,7 @@
             <option value="nombre_desc">Nombre - Z a A</option>
         </select>
     </div>
-    <div id="productos-sol" class="productos-sol"></div>
-    <script src="lentesol.js"></script>
+    <div id="productos-todos" class="productos-todos"></div>
 
     <div class="esquina-inferior" onclick="toggleChatPanel(event)">
         💬Chat
@@ -100,13 +100,13 @@
                 chatPanel.style.display = 'none';
             }
         });
-
         // Detiene la propagación del clic en los inputs del panel
         document.querySelector('.chat-panel').addEventListener('click', function (event) {
             event.stopPropagation();
         });
     </script>
     <script src="buscar.js"></script>
+
 </body>
 
 <footer>
@@ -127,5 +127,4 @@
     </div>
     <script src="../index.js"></script>
 </footer>
-
 </html>

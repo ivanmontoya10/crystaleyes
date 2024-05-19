@@ -31,19 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 productos = data;
 
-                const productosDiv = document.getElementById('productos');
+                const productosDiv = document.getElementById('productos-todos');
                 productosDiv.innerHTML = '';
 
                 data.forEach(producto => {
                     const productoDiv = document.createElement('div');
-                    productoDiv.classList.add('producto-card');
+                    productoDiv.classList.add('producto-card-todos');
 
                     productoDiv.innerHTML = `
-                <div>
-                    <img src="${producto.img1}">
+                    <div class="producto-img">
+                    <img src="/crystaleyes/imgs/${producto.img1}">
+                </div>
+                <div class="producto-info">
                     <h2>${producto.nombre}</h2>
-                    <p class="precio">$${producto.precio}</p>
-                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                    <p class="precio-des">$${producto.precio} MXN</p>
+                    <p>${producto.descripcion_larga}</p>
+                    <div class="producto-btn">
+                        <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                    </div>
                 </div>
             `;
 
@@ -51,23 +56,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // if (producto.id === 2) { 
                     //     productoDiv.innerHTML = `
-                    //         <div>
-                    //             <img src="${producto.img1}">
-                    //             <h2>${producto.nombre}</h2>
-                    //             <p class="precio">$${producto.precio}</p>
-                    //             <p>${producto.descripcion_larga}</p>
-                    //             <center><button onclick="verDetalle(${producto.id})">Hola</button></center> <!-- Botón original -->
-                    //         </div>
+                    // <div class="producto-img">
+                    //      <img src="/crystaleyes/imgs/${producto.img1}">
+                    // </div>
+                    // <div class="producto-info">
+                    //     <h2>${producto.nombre}</h2>
+                    //     <p class="precio-des">$${producto.precio} MXN</p>
+                    //     <p>${producto.descripcion_larga}</p>
+                    //     <div class="producto-btn">
+                    //         <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                    //     </div>
+                    // </div>
                     //     `;
                     // } else {
                     //     productoDiv.innerHTML = `
-                    //         <div>
-                    //             <img src="${producto.img1}">
-                    //             <h2>${producto.nombre}</h2>
-                    //             <p class="precio">$${producto.precio}</p>
-                    //             <p>${producto.descripcion_larga}</p>
-                    //             <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                    //         </div>
+                    // <div class="producto-img">
+                    //      <img src="/crystaleyes/imgs/${producto.img1}">
+                    // </div>
+                    // <div class="producto-info">
+                    //     <h2>${producto.nombre}</h2>
+                    //     <p class="precio-des">$${producto.precio} MXN</p>
+                    //     <p>${producto.descripcion_larga}</p>
+                    //     <div class="producto-btn">
+                    //         <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                    //     </div>
+                    // </div>
                     //     `;
                     // }
 
@@ -99,20 +112,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Limpia y vuelve a renderizar los productos
-        const productosDiv = document.getElementById('productos');
+        const productosDiv = document.getElementById('productos-todos');
         productosDiv.innerHTML = '';
 
         productos.forEach(producto => {
             const productoDiv = document.createElement('div');
-            productoDiv.classList.add('producto-card');
+            productoDiv.classList.add('producto-card-todos');
 
             productoDiv.innerHTML = `
-                <div>
-                    <img src="${producto.img1}">
-                    <h2>${producto.nombre}</h2>
-                    <p class="precio">$${producto.precio}</p>
-                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                </div>
+            <div class="producto-img">
+            <img src="/crystaleyes/imgs/${producto.img1}">
+        </div>
+        <div class="producto-info">
+            <h2>${producto.nombre}</h2>
+            <p class="precio-des">$${producto.precio} MXN</p>
+            <p>${producto.descripcion_larga}</p>
+            <div class="producto-btn">
+                <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+            </div>
+        </div>
             `;
 
             productosDiv.appendChild(productoDiv);

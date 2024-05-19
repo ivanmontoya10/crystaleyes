@@ -30,11 +30,11 @@
                         <li><a href="/crystaleyes/productos/lentesol.html">Lentes de sol</a></li>
                     </ul>
                 </li>
-                <li><a href="/crystaleyes/contacto/contacto.html">Contacto</a></li>
+                <li><a href="/crystaleyes/contacto/contacto.html">Preguntas Frecuentes</a></li>
             </div>
             <div class="menu-right">
                 <div class="search-form-container">
-                    <form class="search-form" action="/crystaleyes/productos/todos.html" method="GET">
+                    <form class="search-form" action="/crystaleyes/productos/busqueda.html" method="GET">
                         <div class="show-input">
                             <input id="search-input" type="text" name="query" placeholder="Buscar...">
                         </div>
@@ -115,7 +115,8 @@
                             <div class="info-producto">
                                 <h2>${productoId1.nombre}</h2>
                                 <p class="precio">$${productoId1.precio}</p>
-                                <p class="descripcion">${productoId1.descripcion_larga}</p><br>
+                                <p class="descripcion">${productoId1.descripcion_corta}</p><br>
+                                <p class="descripcion">Descripción: ${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito" >Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos" onclick="agregarAListaDeseos()">Agregar a lista de deseos</button>
                             </div>
@@ -128,7 +129,8 @@
                         <div id="detalle-producto" class="productoID1">
                             <div class="info-producto">
                                 <p class="precio">$${productoId1.precio}</p>
-                                <p>${productoId1.descripcion_larga}</p><br>
+                                <p>${productoId1.descripcion_corta}</p><br>
+                                <p>Descripción: ${productoId1.descripcion_larga}</p><br>
                                 <button class="btn-comprar" id="btn-agregar-carrito">Agregar al carrito</button><br><br>
                                 <button class="btn-comprar" id="btn-agregar-lista-deseos" onclick="agregarAListaDeseos()">Agregar a lista de deseos</button>
                             </div>
@@ -143,12 +145,12 @@
                             if (!productoExistente) {
 
                                 carrito.push(productoId1);
-                                localStorage.setItem('carrito', JSON.stringify(carrito));
+                                // localStorage.setItem('carrito', JSON.stringify(carrito));
                                 alert('Producto agregado al carrito');
 
                                 this.classList.add('disabled-button');
                             } else {
-                                window.location.href = "/crystaleyes/carrito/carrito.html";
+                                alert('El producto ya ha sido añadido');
                             }
                         });
 
@@ -166,7 +168,7 @@
     </script>
     <script>
         function agregarAListaDeseos() {
-            window.location.href = "/crystaleyes/listadeseos/listadeseos.html";
+            alert("Se agregó a la lista de deseos");
         }
     </script>
 
@@ -264,12 +266,12 @@
                 valoracion: valoracion
             };
 
-            var reseñasGuardadas = sessionStorage.getItem("reseñas");
+            // var reseñasGuardadas = sessionStorage.getItem("reseñas");
             var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
 
             reseñas.push(nuevaReseña);
 
-            sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
+            // sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
 
             document.getElementById("nombre").value = "";
             document.getElementById("comentario").value = "";
@@ -324,7 +326,7 @@
             sessionStorage.removeItem("reseñas");
         });
     </script>
-    <script src="../buscar.js"></script>
+    <script src="buscar.js"></script>
 </body>
 
 <footer>
