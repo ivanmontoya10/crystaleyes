@@ -22,7 +22,7 @@
     <div style="margin-left: 200px; padding: 20px;">
         <div class="container">
             <h2>Clientes</h2>
-            <button id="addUserButton">Agregar usuario (temporal)</button>
+            <button id="addUserButton">Agregar usuario </button>
             <div id="clients-container"></div>
         </div>
     </div>
@@ -103,7 +103,7 @@
                         productInfoList.appendChild(fechaItem);
 
                         const edit = document.createElement('button');
-                        edit.textContent = `Editar cliente ${client.id} (temporal)`;
+                        edit.textContent = `Editar cliente ${client.id} `;
                         edit.addEventListener('click', () => {
                             currentProduct = client;
                             document.getElementById('productName').value = client.nombre;
@@ -115,7 +115,7 @@
                         productInfoList.appendChild(edit);
 
                         const drop = document.createElement('button');
-                        drop.textContent = `Eliminar cliente ${client.id} (temporal)`;
+                        drop.textContent = `Eliminar cliente ${client.id} `;
                         drop.addEventListener('click', () => {
                             productCard.remove();
                         });
@@ -177,7 +177,7 @@
                 productInfoList.appendChild(dateItem);
 
                 const edit = document.createElement('button');
-                edit.textContent = `Editar producto ${newProduct.id} (temporal)`;
+                edit.textContent = `Editar producto ${newProduct.id} `;
                 edit.addEventListener('click', () => {
                     currentProduct = newProduct;
                     document.getElementById('productName').value = newProduct.nombre;
@@ -189,7 +189,7 @@
                 productInfoList.appendChild(edit);
 
                 const drop = document.createElement('button');
-                drop.textContent = `Eliminar producto ${newProduct.id} (temporal)`;
+                drop.textContent = `Eliminar producto ${newProduct.id} `;
                 drop.addEventListener('click', () => {
                     productCard.remove();
                 });

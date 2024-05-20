@@ -44,21 +44,20 @@
                         <div class="show-input">
                             <input id="search-input" type="text" name="query" placeholder="Buscar...">
                         </div>
-                        <button id="search-button" type="submit"><i class="bi bi-search" style="font-size: 20px"></i></button>
+                        <button id="search-button" type="submit"><i class="bi bi-search"
+                                style="font-size: 20px"></i></button>
                     </form>
                 </div>
             </div>
             <li><a href="/crystaleyes/perfil/perfil.html"><i class="bi bi-person-square"
-                style="font-size: 20px"></i></a></li>
+                        style="font-size: 20px"></i></a></li>
             <li><a href="/crystaleyes/listadeseos/listadeseos.html"><i class="bi bi-heart"
-                style="font-size: 20px"></i></a></li>
-            <li><a href="/crystaleyes/loginregister/login.html"><i class="bi bi-person" 
-                style="font-size: 20px"></i></a>
+                        style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/loginregister/login.html"><i class="bi bi-person" style="font-size: 20px"></i></a>
             </li>
             <li><a href="/crystaleyes/loginregister/register.html"><i class="bi bi-person-plus"
-                style="font-size: 20px"></i></a></li>
-            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-bag" 
-                style="font-size: 20px"></i></a></li>
+                        style="font-size: 20px"></i></a></li>
+            <li><a href="/crystaleyes/carrito/carrito.html"><i class="bi bi-bag" style="font-size: 20px"></i></a></li>
         </ul>
     </nav>
 </header>
@@ -66,7 +65,6 @@
 <body>
 
     <h1 class="carrito-de-compras">Carrito de compras</h1><br><br>
-
     <div id="carrito-container"></div>
     <div id="paypal-button-container" class="paypal-container"></div>
 
@@ -234,8 +232,12 @@
                 return actions.order.capture().then(function (details) {
                     // Maneja la aprobación del pago
                     alert('Pago completado por ' + details.payer.name.given_name);
-
+                    setTimeout(function () {
+                        const urlDetalle = `/crystaleyes/index.html`;
+                        window.location.href = urlDetalle;
+                    }, 1000);
                 });
+
             },
             style: {
                 color: 'gold', // Cambiar el color del botón a dorado
