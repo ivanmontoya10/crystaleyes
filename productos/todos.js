@@ -47,43 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p class="precio-des">$${producto.precio} MXN</p>
                     <p>${producto.descripcion_larga}</p>
                     <div class="producto-btn">
-                        <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                        <button onclick="verDetalle(${producto.id})">Ver producto</button>
                     </div>
                 </div>
             `;
 
-                    //Cambiar propiedad para algun producto en especifico
-
-                    // if (producto.id === 2) { 
+                    // (producto.id === 2) 
+                    //     productoDiv.innerHTML
+                    // } 
                     //     productoDiv.innerHTML = `
-                    // <div class="producto-img">
-                    //      <img src="/crystaleyes/imgs/${producto.img1}">
-                    // </div>
-                    // <div class="producto-info">
-                    //     <h2>${producto.nombre}</h2>
-                    //     <p class="precio-des">$${producto.precio} MXN</p>
-                    //     <p>${producto.descripcion_larga}</p>
-                    //     <div class="producto-btn">
-                    //         <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                    //     </div>
-                    // </div>
-                    //     `;
-                    // } else {
-                    //     productoDiv.innerHTML = `
-                    // <div class="producto-img">
-                    //      <img src="/crystaleyes/imgs/${producto.img1}">
-                    // </div>
-                    // <div class="producto-info">
-                    //     <h2>${producto.nombre}</h2>
-                    //     <p class="precio-des">$${producto.precio} MXN</p>
-                    //     <p>${producto.descripcion_larga}</p>
-                    //     <div class="producto-btn">
-                    //         <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
-                    //     </div>
-                    // </div>
-                    //     `;
-                    // }
-
+                    
                     productosDiv.appendChild(productoDiv);
                 });
             })
@@ -128,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="precio-des">$${producto.precio} MXN</p>
             <p>${producto.descripcion_larga}</p>
             <div class="producto-btn">
-                <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                <button onclick="verDetalle(${producto.id})">Ver producto</button>
             </div>
         </div>
             `;

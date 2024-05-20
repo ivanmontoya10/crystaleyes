@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="precio-des">$${producto.precio} MXN</p>
                 <p>${producto.descripcion_larga}</p>
                 <div class="producto-btn">
-                    <center><button onclick="verDetalle(${producto.id})">Ver producto</button></center>
+                    <button onclick="verDetalle(${producto.id})">Ver producto</button>
                 </div>
             </div>
                 `;

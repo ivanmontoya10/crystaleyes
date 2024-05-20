@@ -14,6 +14,7 @@
     border: 1px solid #ccc; 
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    background-color: white;
 }
 
 .producto-img {
@@ -24,12 +25,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
 
 .producto-img img {
     width: 100%;
     height: auto;
     object-fit: cover; 
+    background-color: white;
 }
 
 .producto-info {
@@ -38,16 +41,25 @@
     flex-grow: 1;
     justify-content: space-between;
     text-align: justify;
+    background-color: white;
 }
 
 .producto-info h2, .producto-info p {
     margin: 8px 0;
+    background-color: white;
 }
 
 .precio-des {
     font-size: 22px;
     color: green; 
     font-weight: bold;
+}
+
+.producto-card-todos .producto-btn {
+    background-color: white; 
+    /* padding: 10px; */
+    display: flex;
+    justify-content: center;
 }
 
 .producto-btn {

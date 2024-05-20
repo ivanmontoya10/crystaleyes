@@ -395,6 +395,11 @@
 
 .comentario p {
     margin-bottom: 10px;
+    background-color: white;
+}
+
+.rating p{
+  background-color: white;
 }
 
 /* .rating {

@@ -312,7 +312,7 @@ header {
   line-height: 1.4;
 }
 
-.producto-card button {
+/* .producto-card button {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -321,9 +321,8 @@ header {
   cursor: pointer;
   transition: background-color 0.3s ease;
   max-width: 100%;
-  /* Ancho máximo del botón */
   min-width: 100px;
-}
+} */
 
 .precio {
   color: green;
@@ -352,6 +351,7 @@ header {
 .productoID1 .info-producto p {
   text-align: justify;
   line-height: 1.5;
+  background-color: white;
 }
 
 .btn-comprar {
@@ -446,20 +446,72 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px;
+  /* display: flex;
+  justify-content: space-between; */
 }
 
-.redes-sociales {
-  margin-top: 10px;
+.acerca-de{
+  background-color: #333;
+}
+
+.acerca-de h3{
+  background-color: #333;
+}
+
+.acerca-de p{
+  background-color: #333;
 }
 
 .redes-sociales a {
   color: #fff;
+  background-color: #333;
   margin: 0 10px;
+}
+
+.redes-sociales{
+  background-color: #333;
+}
+
+.redes-sociales i{
+  background-color: #333;
 }
 
 .links {
   text-decoration: none;
 }
+
+/* .footer-column {
+  flex: 1;
+  padding: 10px;
+} */
+
+/* .footer-column h3 {
+  margin-bottom: 10px;
+} */
+
+/* .redes-sociales {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 200px; 
+} */
+
+/* .redes-sociales i {
+  margin-right: 5px;
+} */
+
+/* .redes-sociales .links {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.redes-sociales .links:hover {
+  text-decoration: underline;
+} */
 
 /*COOKIES*/
 .wrapper {

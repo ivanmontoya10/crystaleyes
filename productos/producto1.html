@@ -207,91 +207,91 @@
     </script>
 
 
-    <section id="comentarios">
-        <div id="lista-comentarios">
-            <!-- Aquí se mostrarán los comentarios -->
+<section id="comentarios">
+    <div id="lista-comentarios">
+        <!-- Aquí se mostrarán los comentarios -->
+    </div>
+    <h2 class="reviews">Reseñas</h2>
+    <h4 class="añadir-comentarios">Agregar comentario</h4><br><br>
+    <form id="formulario-comentario">
+        <div>
+            <label for="nombre">Nombre de usuario:</label>
+            <input type="text" id="nombre" name="nombre" required>
         </div>
-        <h2 class="reviews">Reseñas</h2>
-        <h4 class="añadir-comentarios">Agregar comentario</h4><br><br>
-        <form id="formulario-comentario">
-            <div>
-                <label for="nombre">Nombre de usuario:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="rating">
-                <label for="comentario">Calificación</label>
-                <i class="bi bi-star-fill star"></i>
-                <i class="bi bi-star-fill star"></i>
-                <i class="bi bi-star-fill star"></i>
-                <i class="bi bi-star-fill star"></i>
-                <i class="bi bi-star-fill star"></i>
-            </div>
-            <div>
-                <label for="comentario">Comentario:</label>
-                <textarea id="comentario" name="comentario" required></textarea>
-            </div>
+        <div class="rating">
+            <label for="comentario">Calificación</label>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+            <i class="bi bi-star-fill star"></i>
+        </div>
+        <div>
+            <label for="comentario">Comentario:</label>
+            <textarea id="comentario" name="comentario" required></textarea>
+        </div>
 
-            <button type="submit">Agregar Comentario</button>
-        </form>
-    </section>
+        <button type="submit">Agregar Comentario</button>
+    </form>
+</section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            mostrarComentarios();
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        mostrarComentarios();
+    });
+
+    const stars = document.querySelectorAll('.star');
+
+    stars.forEach(function(star, index) {
+        star.addEventListener('click', function() {
+            for (let i = 0; i <= index; i++) {
+                stars[i].classList.add('checked');
+            }
+            for (let i = index + 1; i < stars.length; i++) {
+                stars[i].classList.remove('checked');
+            }
         });
+    });
 
-        const stars = document.querySelectorAll('.star');
+    document.getElementById("formulario-comentario").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-        stars.forEach(function (star, index) {
-            star.addEventListener('click', function () {
-                for (let i = 0; i <= index; i++) {
-                    stars[i].classList.add('checked');
-                }
-                for (let i = index + 1; i < stars.length; i++) {
-                    stars[i].classList.remove('checked');
-                }
-            });
-        });
+        var nombre = document.getElementById("nombre").value;
+        var comentario = document.getElementById("comentario").value;
+        var valoracion = document.querySelectorAll('.star.checked').length;
 
-        document.getElementById("formulario-comentario").addEventListener("submit", function (event) {
-            event.preventDefault();
+        var nuevaReseña = {
+            nombre: nombre,
+            comentario: comentario,
+            valoracion: valoracion
+        };
 
-            var nombre = document.getElementById("nombre").value;
-            var comentario = document.getElementById("comentario").value;
-            var valoracion = document.querySelectorAll('.star.checked').length;
+        var reseñasGuardadas = sessionStorage.getItem("reseñas");
+        var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
 
-            var nuevaReseña = {
-                nombre: nombre,
-                comentario: comentario,
-                valoracion: valoracion
-            };
+        reseñas.push(nuevaReseña);
 
-            // var reseñasGuardadas = sessionStorage.getItem("reseñas");
-            var reseñas = reseñasGuardadas ? JSON.parse(reseñasGuardadas) : [];
+        sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
 
-            reseñas.push(nuevaReseña);
+        document.getElementById("nombre").value = "";
+        document.getElementById("comentario").value = "";
 
-            // sessionStorage.setItem("reseñas", JSON.stringify(reseñas));
+        mostrarComentarios();
+    });
 
-            document.getElementById("nombre").value = "";
-            document.getElementById("comentario").value = "";
+    function mostrarComentarios() {
+        var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
+        var listaComentarios = document.getElementById("lista-comentarios");
 
-            mostrarComentarios();
-        });
+        listaComentarios.innerHTML = "";
 
-        function mostrarComentarios() {
-            var rutaImagenPerfil = "/crystaleyes/imgs/perfil.jpg";
-            var listaComentarios = document.getElementById("lista-comentarios");
+        var reseñasGuardadas = sessionStorage.getItem("reseñas");
 
-            listaComentarios.innerHTML = "";
+        if (reseñasGuardadas) {
+            var reseñas = JSON.parse(reseñasGuardadas);
 
-            var reseñasGuardadas = sessionStorage.getItem("reseñas");
-
-            if (reseñasGuardadas) {
-                var reseñas = JSON.parse(reseñasGuardadas);
-
-                reseñas.forEach(function (reseña) {
-                    var comentarioHTML = `
+            reseñas.forEach(function(reseña) {
+                var comentarioHTML = `
                     <div class="comentario">
                         <div style="display: flex; align-items: center;">
                             <img src="${rutaImagenPerfil}" class="foto-perfil" style="width: 60px; height: 60px; margin-right: 10px;">
@@ -302,29 +302,32 @@
                         </div>
                         <p>${reseña.comentario}</p>
                     </div>`;
-                    listaComentarios.innerHTML += comentarioHTML;
-                });
+                listaComentarios.innerHTML += comentarioHTML;
+            });
+        }
+    }
+
+    function mostrarEstrellas(valoracion) {
+        var estrellasHTML = "";
+
+        for (var i = 0; i < 5; i++) {
+            if (i < valoracion) {
+                estrellasHTML += '<i class="bi bi-star-fill star checked"></i>';
+            } else {
+                estrellasHTML += '<i class="bi bi-star-fill star"></i>';
             }
         }
 
-        function mostrarEstrellas(valoracion) {
-            var estrellasHTML = "";
+        return estrellasHTML;
+    }
 
-            for (var i = 0; i < 5; i++) {
-                if (i < valoracion) {
-                    estrellasHTML += '<i class="bi bi-star-fill star checked"></i>';
-                } else {
-                    estrellasHTML += '<i class="bi bi-star-fill star"></i>';
-                }
-            }
+    // Limpiar los comentarios al recargar la página
+    window.addEventListener("beforeunload", function() {
+        sessionStorage.removeItem("reseñas");
+    });
+</script>
 
-            return estrellasHTML;
-        }
 
-        // Limpiar los comentarios al recargar la página
-        window.addEventListener("beforeunload", function () {
-            sessionStorage.removeItem("reseñas");
-        });
     </script>
     <script src="buscar.js"></script>
 </body>

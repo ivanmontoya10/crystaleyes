@@ -90,7 +90,7 @@
 
         💬Chat
         <div class="chat-panel" style="display: none;">
-            <input type="text" placeholder="Nombre">
+            <input type="text"  placeholder="Nombre">
             <input type="email" placeholder="Correo electrónico">
             <input type="text" placeholder="Mensaje">
             <center><button class="btn-chat">Enviar</button></center>
@@ -105,10 +105,23 @@
         }
 
         // function closeChatPanel(event) {
+        // onclick id name-chat email-chat msj-chat
         //     const chatPanel = event.currentTarget.parentElement;
         //     chatPanel.style.display = 'none';
         //     event.stopPropagation();
+        // var name = document.getElementById('name-chat').value;
+        //alert("" + a +"") 
         // }
+
+        // const textInputs = document.querySelectorAll('.valid-text');
+        // class="valid-text"
+        // textInputs.forEach(input => {
+        //     input.addEventListener('input', function () {
+        //         this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+        //         //this.value = this.value.replace(/\s/g, '') - oninput
+        //     });
+        // });
+
 
         // Cierra el panel si se hace clic fuera de él
         document.addEventListener('click', function (event) {
@@ -193,19 +206,23 @@
 </body>
 
 <footer>
-    <div class="acerca-de">
+    <div class="acerca-de"><!---->
+        
         <h3>Acerca de nosotros</h3>
         <p>Somos Crystal Eyes, una empresa apasionada por la visión y el estilo. En Crystal Eyes, entendemos la
             importancia de unos buenos lentes no solo para corregir la visión, sino también para realzar tu estilo
             único.</p>
     </div>
+
+    <!---->
     <div class="redes-sociales">
         <i class='bx bxl-facebook'></i>
         <a class="links" href="https://www.facebook.com/profile.php?id=61558525312465&mibextid=kFxxJD">Facebook</a>
         <i class='bx bxl-instagram'></i>
         <a class="links" href="https://www.instagram.com/crystaleyesoficial/">Instagram</a>
     </div>
-    <div class="acerca-de">
+    
+    <div class="acerca-de"><!---->
         <p>©2024 Crystal Eyes. Todos los derechos reservados.</p>
     </div>
 </footer>
