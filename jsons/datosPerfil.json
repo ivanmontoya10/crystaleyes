@@ -1,10 +1,10 @@
 {
-    "nombre": "Usuario Ejemplo \"Cristalito\"",
-    "correo": "user@example.com",
-    "telefono": "1234567890",
-    "direccion": "Calle Principal 123, Ciudad",
-    "codigo_postal": "12345",
-    "fecha_nacimiento": "2002-01-29",
-    "pais_region": "México"
-  }
-  
+  "id": 1,
+  "nombre": "Usuario Ejemplo \"Cristalito\"",
+  "correo": "user@example.com",
+  "telefono": "1234567890",
+  "direccion": "Calle Principal 123, Ciudad",
+  "codigo_postal": "12345",
+  "fecha_nacimiento": "2002-01-29",
+  "pais_region": "México"
+}

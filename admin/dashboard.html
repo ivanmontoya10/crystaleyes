@@ -52,7 +52,7 @@
             .catch(error => console.error('Error al cargar el resumen de órdenes:', error));
 
         // Cargar el resumen de productos
-        fetch('productos.json')
+        fetch('http://localhost/crystaleyes/jsons/productos.json')
             .then(response => response.json())
             .then(products => {
                 const productsSummary = document.getElementById('products-summary');
@@ -61,7 +61,7 @@
             .catch(error => console.error('Error al cargar el resumen de productos:', error));
 
         // Cargar el resumen de clientes
-        fetch('clientes.json')
+        fetch('http://localhost/crystaleyes/jsons/clientes.json')
             .then(response => response.json())
             .then(clients => {
                 const clientsSummary = document.getElementById('clients-summary');

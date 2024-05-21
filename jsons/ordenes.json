@@ -1,6 +1,6 @@
 [
     {
-      "numero": 12345,
+      "id": 1,
       "fecha": "28 de Abril, 2024",
       "productos": [
         {
@@ -15,7 +15,7 @@
       "total": 200.00
     },
     {
-      "numero": 12346,
+      "id": 2,
       "fecha": "29 de Abril, 2024",
       "productos": [
         {
@@ -30,7 +30,7 @@
       "total": 250.00
     },
     {
-      "numero": 12347,
+      "id": 3,
       "fecha": "30 de Abril, 2024",
       "productos": [
         {
@@ -45,7 +45,7 @@
       "total": 180.00
     },
     {
-      "numero": 12348,
+      "id": 4,
       "fecha": "1 de Mayo, 2024",
       "productos": [
         {
@@ -60,7 +60,7 @@
       "total": 220.00
     },
     {
-      "numero": 12349,
+      "id": 5,
       "fecha": "2 de Mayo, 2024",
       "productos": [
         {
@@ -75,7 +75,7 @@
       "total": 190.00
     },
     {
-      "numero": 12350,
+      "id": 6,
       "fecha": "3 de Mayo, 2024",
       "productos": [
         {
