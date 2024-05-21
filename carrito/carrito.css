@@ -15,11 +15,49 @@
   text-align: Center;  
 }
 
+.table tr {
+  border: 1px solid white;
+  
+}
+
+.table th{
+  border: 1px solid white;
+  
+}
+
 .table th,
 .table td {
   padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(235, 224, 224);
+}
+
+  .table td:nth-child(2) {
+  border: 1px solid white;
+}
+
+.table td:nth-child(3) {
+  border: 1px solid white;
+}
+
+.table td:nth-child(4) {
+  border: 1px solid white;
+}  
+
+
+
+.table tr:nth-child(1) {
+  background-color: white; /* Color para la primera fila */
+  
+}
+
+.table tr:nth-child(2) {
+  background-color: white; /* Color para la segunda fila */
+
+}
+
+.table tr:nth-child(3) {
+  background-color: white; /* Color para la tercera fila */
 }
 
 .table img {
@@ -46,10 +84,21 @@
   background-color: #7e0909;
 }
 
-.paypal-container {
+.pay-cont {
   display: flex;
   justify-content: center;
+  
 }
+
+#total-pagar{
+  color:black;
+  font-family: Arial, sans-serif;
+}
+
+
+
+
+
 
 
 

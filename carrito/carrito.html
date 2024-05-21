@@ -68,7 +68,10 @@
     <h1 class="carrito-de-compras">Carrito de compras</h1><br><br>
 
     <div id="carrito-container"></div>
+
     <div id="paypal-button-container" class="paypal-container"></div>
+
+
 
 
     <script>
@@ -102,6 +105,7 @@
             container.innerHTML = '';
 
             const encabezado = document.createElement('tr');
+            
             const imagenHeader = document.createElement('th');
             imagenHeader.textContent = 'Imagen';
             encabezado.appendChild(imagenHeader);
@@ -132,9 +136,11 @@
 
                 const imagenColumna = document.createElement('td');
                 const imagenProducto = document.createElement('img');
-                imagenProducto.src = producto.img1;
+                
                 imagenProducto.className = 'card-img-top';
                 imagenProducto.alt = producto.nombre;
+                imagenProducto.src = producto.img1;
+                
                 imagenColumna.appendChild(imagenProducto);
                 fila.appendChild(imagenColumna);
 
@@ -183,6 +189,7 @@
             const total = calcularTotal();
             const totalPagar = document.createElement('div');
             totalPagar.textContent = `Total a pagar: $${total.toFixed(2)}`;
+            totalPagar.id = 'total-pagar';
             container.appendChild(totalPagar);
 
             const totalPagarPaypal = document.getElementById('paypal-button-container');
@@ -242,7 +249,8 @@
                 shape: 'pill', // Cambiar la forma del botón a redondeada
                 layout: 'vertical', // Cambiar el diseño del botón a vertical
                 label: 'pay', // Cambiar la etiqueta del botón
-                height: 40 // Cambiar la altura del botón
+                // width: 200,
+                height: 40,
             }
         }).render('#paypal-button-container');
 
